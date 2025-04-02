@@ -1,0 +1,14 @@
+p{
+    color: red;
+    background-color: black;
+}
+body{
+    writing-mode: sideways-rl;
+    border-style: groove;
+    border-color: blue;
+    background-color: black;
+}
+a{
+    color: white;
+    writing-mode: vertical-lr;
+}
