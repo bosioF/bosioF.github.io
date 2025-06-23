@@ -368,6 +368,12 @@ body {
   box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
 }
 
+.credits {
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgb(255, 255, 255);
+}
+
 .footer {
   background: rgba(10, 10, 10, 0.95);
   padding: 1.5rem 2rem;
