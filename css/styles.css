@@ -369,9 +369,11 @@ body {
 }
 
 .credits {
-    text-align: center;
-    font-size: 0.9rem;
-    color: rgb(255, 255, 255);
+  background: rgba(10, 10, 10, 0.95);
+  padding: 1.5rem 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 .footer {
