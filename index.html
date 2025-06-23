@@ -1,42 +1,122 @@
 <!DOCTYPE html>
-<html lang="it">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My blog</title>
-    <link rel="stylesheet" href="/css/index_styles.css" />
-  </head>
-  <body>
-    <header>
-      <h1>Bosio Federico</h1>
-      <h2>Page is visitable at: bit.ly/3QXvLd9</h2>
-      <nav>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Projects</a></li>
-          <li><a href="/src/contacts.html">Contacts</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <section class="post">
-        <h2>first look at the webiste</h2>
-        <p>Published on <time datetime="2025-07-01">7 January 2030</time></p>
-        <p>example</p>
-      </section>
-      <section class="post">
-        <h2>si</h2>
-        <p>Published on <time datetime="2025-04-02">2 April 2025</time></p>
-        <p>this is an example</p>
-      </section>
-      <section class="post">
-        <h2>Just deployed</h2>
-        <p>Published on <time datetime="2025-03-28">28 March 2025</time></p>
-        <p>Added css file</p>
-      </section>
-    </main>
-    <footer>
-      <p>&copy; 2025 All rights reserved</p>
-    </footer>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - CyberSec Journey</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <canvas class="matrix-bg" id="matrix"></canvas>
+    
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">CyberSec.Journey</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="index.html#learning">Learning</a></li>
+                <li><a href="contacts.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="contact-hero">
+        <h1>Let's Connect</h1>
+        <p>I'm always eager to learn from others and share my cybersecurity journey!</p>
+    </section>
+
+    <section class="section">
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <div class="contact-item">
+                    <span>📧</span>
+                    <div>
+                        <strong>Email</strong><br>
+                        <a href="mailto:your.email@example.com" style="color: #00ff41;">your.email@example.com</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <span>🐙</span>
+                    <div>
+                        <strong>GitHub</strong><br>
+                        <a href="https://github.com/yourusername" target="_blank" style="color: #00ff41;">github.com/yourusername</a>
+                        <br><small>Check out my projects and learning repositories</small>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <span>🔗</span>
+                    <div>
+                        <strong>LinkedIn</strong><br>
+                        <a href="https://linkedin.com/in/yourprofile" target="_blank" style="color: #00ff41;">linkedin.com/in/yourprofile</a>
+                        <br><small>Let's connect professionally</small>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <span>📷</span>
+                    <div>
+                        <strong>Instagram</strong><br>
+                        <a href="https://instagram.com/yourusername" target="_blank" style="color: #00ff41;">@yourusername</a>
+                        <br><small>Behind the scenes of my learning journey</small>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <span>💬</span>
+                    <div>
+                        <strong>Discord</strong><br>
+                        <span style="color: #ff6b6b;">yourusername#1234</span>
+                        <br><small>Let's chat about cybersecurity topics</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h3>Send a Message</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" style="width: 100%; padding: 1rem; background: rgba(26, 26, 46, 0.8); border: 1px solid #00ff41; border-radius: 5px; color: #e0e0e0; font-family: inherit;">
+                            <option value="general">General Inquiry</option>
+                            <option value="collaboration">Collaboration</option>
+                            <option value="learning">Learning Resources</option>
+                            <option value="mentorship">Mentorship</option>
+                            <option value="feedback">Feedback</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Tell me about your cybersecurity interests, questions, or how we can connect!"></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Send Message</button>
+                </form>
+                
+                <div style="margin-top: 2rem; padding: 1rem; background: rgba(16, 16, 30, 0.5); border-radius: 8px; border-left: 3px solid #ff6b6b;">
+                    <h4 style="color: #ff6b6b; margin-bottom: 0.5rem;">Note:</h4>
+                    <p style="font-size: 0.9rem;">I'm actively learning and may not have answers to advanced questions, but I'm always happy to learn together and share resources!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div style="text-align: center; background: rgba(26, 26, 46, 0.9); padding: 3rem; border-radius: 15px; border: 1px solid #00ff41;">
+            <h3 style="color: #00ff41; margin-bottom: 2rem;">Learning Community</h3>
+            <p>I believe in the power of community learning. Together, we can make cybersecurity knowledge accessible to everyone. Join me in building a safe and informed cyberspace!</p>
+        </div>
+    </section>
+</body>
 </html>
