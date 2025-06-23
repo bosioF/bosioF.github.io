@@ -369,29 +369,29 @@ body {
 }
 
 .footer {
-    background: rgba(10, 10, 10, 0.95);
-    padding: 1.5rem 2rem;
-    text-align: center;
-    border-top: 1px solid #00ff41;
-    font-size: 0.9rem;
-    line-height: 1.5; /* Aggiunge spazio tra le righe */
+  background: rgba(10, 10, 10, 0.95);
+  padding: 1.5rem 2rem;
+  text-align: center;
+  border-top: 1px solid #00ff41;
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 .social-links {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .social-links img {
-    width: 20px;
-    height: 20px;
-    transition: transform 0.3s ease;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
 }
 
 .social-links img:hover {
-    transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 @keyframes fadeInUp {
