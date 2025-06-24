@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website in Beta</title>
+    <style>
+      body {
+        background: linear-gradient(
+          135deg,
+          #0a0a0a 0%,
+          #1a1a2e 50%,
+          #16213e 100%
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        text-align: center;
+      }
+
+      .go-back {
+        font-family: "Courier New", monospace;
+        display: inline-block;
+        padding: 12px 30px;
+        background: linear-gradient(45deg, #00ff41, #41ff00);
+        color: #000;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 255, 65, 0.3);
+      }
+
+      .go-back:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 255, 65, 0.5);
+      }
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        color: #00ff41;
+        text-shadow: 0 0 20px #00ff41;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+
+      .container_beta {
+        color: white;
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 600px;
+      }
+
+      footer {
+        color: white;
+        margin-top: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <h1>Website in Beta</h1>
+    </header>
+
+    <main class="container_beta">
+      <section class="beta-info">
+        <p>
+          Thank you for visiting! This website is currently in
+          <strong>BETA</strong>.
+        </p>
+        <p>
+          If you encounter any bugs or issues, please reach out to me on
+          Discord:
+        </p>
+        <p class="discord-username">@fedebosio</p>
+        <button class="go-back" onclick="window.history.back()">Go Back</button>
+      </section>
+    </main>
+
+    <footer class="credits_beta">
+      <p>&copy; 2025 CyberSec Portfolio. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
