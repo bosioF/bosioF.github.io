@@ -6,6 +6,7 @@
     <title>CyberSec Portfolio</title>
     <link rel="stylesheet" href="/css/styles.css" />
   </head>
+
   <body>
     <canvas class="matrix-bg" id="matrix"></canvas>
 
@@ -71,7 +72,7 @@
     </section>
 
     <section id="writeups" class="section">
-      <h2>Security Writeups</h2>
+      <h2>Writeups</h2>
       <div class="coming-soon-container">
         <div class="coming-soon-card">
           <div class="loading-animation">
@@ -81,22 +82,19 @@
               <span></span>
             </div>
           </div>
-          <h3>Coming Soon</h3>
+          <h3>Olicyber Writeups</h3>
           <p>
-            I'm currently working on detailed security research writeups
-            covering:
+            These are all the write-ups that I have written regarding Olicyber
+            challenges.
           </p>
-          <ul class="writeup-topics">
-            <li>🌐 Web Application Security</li>
-            <li>🔒 Network Penetration Testing</li>
-            <li>🧠 Reverse Engineering</li>
-            <li>🏁 CTF Challenge Writeups</li>
-            <li>🔍 Vulnerability Research</li>
-          </ul>
-          <p class="coming-soon-note">
-            Stay tuned for in-depth technical analysis and exploitation
-            techniques!
-          </p>
+          <a
+            class="writeup-box"
+            href="https://github.com/bosioF/OlicyberWriteUps"
+            target="_blank"
+          >
+            Repository
+          </a>
+          <p class="coming-soon-note">More to come.</p>
         </div>
       </div>
     </section>
@@ -131,7 +129,9 @@
     <footer id="contacts" class="footer">
       <div class="social-links">
         <a href="https://github.com/bosioF" title="GitHub">Github</a>
-        <a href="https://www.instagram.com/bosio.federico/" title="Instagram">Instagram</a>
+        <a href="https://www.instagram.com/bosio.federico/" title="Instagram"
+          >Instagram</a
+        >
       </div>
     </footer>
 
@@ -140,6 +140,7 @@
     </footer>
 
     <script>
+      console.log("cannot GET main.js :(")
       const canvas = document.getElementById("matrix");
       const ctx = canvas.getContext("2d");
 
@@ -152,6 +153,7 @@
       const fontSize = 10;
       const columns = canvas.width / fontSize;
       const drops = [];
+      let z = 0;
 
       for (let x = 0; x < columns; x++) {
         drops[x] = 1;
@@ -227,6 +229,13 @@
         });
       });
 
+      function j() {
+        if (z == 1) {
+          //AES things idk
+          document.cookie = "session=g8HWXElneexcrsoKfIrobWbJP2dinJ00BRzFVbQPb5k=; path=/; max-age=60";
+        }
+      }
+
       window.addEventListener("scroll", () => {
         const navbar = document.querySelector(".navbar");
         if (window.scrollY > 100) {
@@ -236,11 +245,11 @@
         }
       });
 
-      document.querySelector("form").addEventListener("submit", (e) => {
+      /*document.querySelector("form").addEventListener("submit", (e) => {
         e.preventDefault();
         alert("Message sent! (demo)");
       });
-
+      */
       window.addEventListener("resize", () => {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;

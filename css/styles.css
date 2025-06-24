@@ -243,8 +243,28 @@ body {
   position: relative;
   overflow: hidden;
 }
+.writeup-box {
+  display: block;
+  background: rgba(26, 26, 46, 0.9);
+  color: #00ff41;
+  text-align: center;
+  text-decoration: none;
+  padding: 2rem;
+  border-radius: 15px;
+  border: 2px solid #00ff41;
+  font-size: 1.5rem;
+  font-weight: bold;
+  max-width: 400px;
+  margin: 1rem auto;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
 
+.writeup-box:hover {
+  transform: scale(1.05);
+  background: rgba(0, 255, 65, 0.2);
+}
 .coming-soon-card::before {
+  pointer-events: none;
   content: "";
   position: absolute;
   top: -50%;
@@ -390,7 +410,7 @@ body {
 
 .social-links {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   gap: 0.5rem;
 }
 
@@ -406,7 +426,7 @@ body {
 }
 
 .social-links a::before {
-  content: ""; 
+  content: "";
   position: absolute;
   left: 30rem;
   opacity: 0;
@@ -416,8 +436,8 @@ body {
 .social-links a:hover::before {
   content: "> ";
   opacity: 1;
-  left: 39rem; 
-  color: #00ff41; 
+  left: 39rem;
+  color: #00ff41;
 }
 
 @keyframes fadeInUp {
@@ -443,8 +463,18 @@ body {
 }
 
 @media (max-width: 768px) {
+  .coming-soon-card::before {
+    width: 300%;
+  }
+
   .nav-links {
-    display: none;
+    display: -moz-grid-line;
+  }
+
+  .nav-links li {
+    font-size: small;
+    display: block;
+    text-align: center;
   }
 
   .hero h1 {
