@@ -2,14 +2,14 @@
 <html lang="it">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
     <title>@bosio — Cybersec Portfolio</title>
     <meta
       name="description"
       content="Portfolio di Federico — CTF player & cybersecurity enthusiast"
     />
     <link rel="icon" href="icons/favicon.ico" />
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
     <canvas id="matrix" aria-hidden="true"></canvas>
@@ -56,7 +56,7 @@
             </div>
           </div>
           <aside class="profile-card" aria-labelledby="profile-name">
-            <img src="assets/aboutMePhoto.jpg" class="avatar" />
+            <img src="assets/aboutMePhoto.jpg" class="avatar" alt="Federico's profile picture" />
             <div class="meta">
               <strong id="profile-name">Federico — @fedebosio</strong>
               <div
@@ -88,7 +88,7 @@
             <h4>Featured</h4>
             <div class="projects">
               <div class="project">
-                <div style="flex: 1">
+                <div>
                   <strong>Olicyber Writeups</strong>
                   <div class="muted">collection of writeups</div>
                 </div>
@@ -101,7 +101,7 @@
                 </div>
               </div>
               <div class="project">
-                <div style="flex: 1">
+                <div>
                   <strong>text2slide</strong>
                   <div class="muted">
                     Script that converts text → animated slides (manim +
@@ -118,7 +118,7 @@
           </div>
         </section>
       </main>
-      <footer class="site-footer">
+      <footer class="site-footer" id="contact">
         <div class="muted">&copy; 2025 Federico — CyberSec Portfolio</div>
         <div class="socials">
           <a href="https://github.com/bosioF" target="_blank">GitHub</a>
@@ -142,6 +142,7 @@
         charIndex = 0,
         isDeleting = false;
       const typingEl = document.getElementById("typing");
+      
       function typeEffect() {
         const current = texts[textIndex];
         if (isDeleting) {
@@ -162,25 +163,32 @@
         }
         setTimeout(typeEffect, speed);
       }
+      
       typeEffect();
+      
       document.querySelectorAll('a[href^="#"]').forEach((a) =>
         a.addEventListener("click", (e) => {
           e.preventDefault();
-          const t = document.querySelector(a.getAttribute("href"));
-          if (t) t.scrollIntoView({ behavior: "smooth" });
+          const target = document.querySelector(a.getAttribute("href"));
+          if (target) target.scrollIntoView({ behavior: "smooth" });
         })
       );
+      
       const canvas = document.getElementById("matrix");
       const ctx = canvas.getContext("2d");
+      
       function resize() {
-        canvas.width = innerWidth;
-        canvas.height = innerHeight;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
       }
+      
       window.addEventListener("resize", resize);
       resize();
-      const cols = Math.floor(innerWidth / 12);
+      
+      const cols = Math.floor(window.innerWidth / 12);
       const drops = new Array(cols).fill(0);
       const chars = "01ABCDEF@#$%*+-";
+      
       function draw() {
         ctx.fillStyle = "rgba(0,0,0,0.06)";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -194,7 +202,9 @@
           drops[i]++;
         }
       }
+      
       setInterval(draw, 40);
+      
       document.getElementById("discord-link").addEventListener("click", (e) => {
         e.preventDefault();
         alert("You can add me with this username: @fedebosio");
