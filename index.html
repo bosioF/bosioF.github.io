@@ -1,137 +1,204 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>@bosio — Cybersec Portfolio</title>
-  <meta name="description" content="Portfolio di Federico — CTF player & cybersecurity enthusiast" />
-  <link rel="icon" href="icons/favicon.ico" />
-  <style>
-    :root{
-      --bg-1:#070809;
-      --bg-2:#0f1720;
-      --accent:#00ff6a;
-      --accent-2:#7af5a8;
-      --muted:#bfc9c6;
-      --glass:rgba(255,255,255,0.03);
-      --radius:14px;
-      --maxW:1100px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Courier New", monospace;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, Roboto, "Helvetica Neue", Arial; background:linear-gradient(180deg,var(--bg-1),var(--bg-2));color:var(--muted);}
-    canvas#matrix{position:fixed;inset:0;width:100%;height:100%;z-index:0;opacity:0.07;pointer-events:none}
-    .wrap{position:relative;z-index:1;max-width:var(--maxW);margin:0 auto;padding:48px 24px 96px;}
-    header.site-header{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:32px}
-    .brand{display:flex;align-items:center;gap:14px}
-    .logo-dot{width:14px;height:14px;border-radius:4px;background:linear-gradient(180deg,var(--accent),var(--accent-2));box-shadow:0 6px 18px rgba(0,255,106,0.12)}
-    .brand h1{font-size:1.05rem;margin:0;color:var(--accent);letter-spacing:0.6px}
-    .brand p{margin:0;font-size:0.8rem;color:var(--muted)}
-    nav.primary{display:flex;gap:10px;align-items:center}
-    nav.primary a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-size:0.95rem}
-    nav.primary a:hover{color:var(--bg-2);background:linear-gradient(90deg,var(--accent),var(--accent-2))}
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding:48px 0}
-    .hero-inner{padding:28px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border-radius:var(--radius);backdrop-filter: blur(6px);border:1px solid rgba(0,255,106,0.06)}
-    h2.tag{color:var(--accent);margin:0 0 12px;font-weight:700;letter-spacing:0.6px}
-    h3.title{margin:0 0 10px;font-size:2.2rem;color:#eafaf0}
-    p.lead{margin:0 0 18px;color:var(--muted);line-height:1.5}
-    .typing{font-family:var(--mono);font-size:1.05rem;color:var(--accent);min-height:28px}
-    .cta-row{display:flex;gap:12px;margin-top:18px}
-    .btn{background:transparent;border:1px solid rgba(0,255,106,0.18);padding:10px 14px;border-radius:10px;color:var(--muted);cursor:pointer}
-    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#04201a;border:none}
-    .profile-card{padding:22px;border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.01),rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.02)}
-    .avatar{width:100%;height:300px;background:linear-gradient(135deg,#0e1722,#0b1220);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:5rem}
-    .meta{margin-top:14px;color:var(--muted);font-size:0.95rem}
-    section.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
-    .card{background:var(--glass);padding:20px;border-radius:12px;border:1px solid rgba(0,0,0,0.3)}
-    .card h4{color:var(--accent);margin:0 0 10px}
-    .card p{margin:0;color:var(--muted);font-size:0.95rem}
-    .projects{display:flex;flex-direction:column;gap:12px}
-    .project{display:flex;gap:12px;align-items:center;padding:12px;border-radius:10px;border:1px solid rgba(0,255,106,0.06);background:linear-gradient(180deg,rgba(0,0,0,0.02),transparent)}
-    .project a{color:var(--accent);text-decoration:none;font-weight:600}
-    footer.site-footer{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.02);display:flex;justify-content:space-between;align-items:center}
-    .socials{display:flex;gap:12px}
-    .socials a{color:var(--muted);text-decoration:none;padding:8px;border-radius:8px}
-    @media (max-width:980px){.hero{grid-template-columns:1fr}.profile-card{order:-1}.grid{grid-template-columns:repeat(2,1fr)}}
-    @media (max-width:640px){.wrap{padding:22px 16px 80px}.grid{grid-template-columns:1fr}.hero-inner{padding:18px}.avatar{height:200px}}
-    .muted{color:var(--muted)}
-    a.link{color:var(--accent);text-decoration:none}
-  </style>
-</head>
-<body>
-  <canvas id="matrix" aria-hidden="true"></canvas>
-  <div class="wrap">
-    <header class="site-header">
-      <div class="brand">
-        <div class="logo-dot" aria-hidden="true"></div>
-        <div>
-          <h1>@bosio</h1>
-          <p class="muted">CTF player · Cybersecurity enthusiast</p>
-        </div>
-      </div>
-      <nav class="primary" aria-label="Primary">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-        <a class="btn" href="/beta.html">BETA</a>
-      </nav>
-    </header>
-    <main id="home">
-      <section class="hero">
-        <div class="hero-inner">
-          <p class="tag">Hello, I'm Federico</p>
-          <h3 class="title">I build skills in cybersecurity & hacking</h3>
-          <p class="lead">16‑year‑old security enthusiast — I solve CTFs, write writeups and learn reverse engineering, web hacking, and forensics.</p>
-          <div class="typing" id="typing">Loading...</div>
-          <div class="cta-row">
-            <button class="btn primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">View projects</button>
-            <a class="btn" href="https://github.com/bosioF" target="_blank" rel="noopener">GitHub</a>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>@bosio — Cybersec Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio di Federico — CTF player & cybersecurity enthusiast"
+    />
+    <link rel="icon" href="icons/favicon.ico" />
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <canvas id="matrix" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <header class="site-header">
+        <div class="brand">
+          <div class="logo-dot" aria-hidden="true"></div>
+          <div>
+            <h1>@bosio</h1>
+            <p class="muted">CTF player · Cybersecurity enthusiast</p>
           </div>
         </div>
-        <aside class="profile-card" aria-labelledby="profile-name">
-          <img src="assets/aboutMePhoto.jpg" class="avatar">
-          <div class="meta">
-            <strong id="profile-name">Federico — @fedebosio</strong>
-            <div style="margin-top:8px;color:var(--muted);font-size:0.95rem">Active on HackTheBox • TryHackMe • Olicyber</div>
+        <nav class="primary" aria-label="Primary">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+      <main id="home">
+        <section class="hero">
+          <div class="hero-inner">
+            <p class="tag">Hello, I'm Federico</p>
+            <h3 class="title">I build skills in cybersecurity & hacking</h3>
+            <p class="lead">
+              16‑year‑old security enthusiast — I solve CTFs, write writeups and
+              learn reverse engineering, web hacking, and forensics.
+            </p>
+            <div class="typing" id="typing">Loading...</div>
+            <div class="cta-row">
+              <button
+                class="btn primary"
+                onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})"
+              >
+                View projects
+              </button>
+              <a
+                class="btn"
+                href="https://github.com/bosioF"
+                target="_blank"
+                rel="noopener"
+                >GitHub</a
+              >
+            </div>
           </div>
-        </aside>
-      </section>
-      <section class="grid" id="about" aria-label="about">
-        <div class="card">
-          <h4>About me</h4>
-          <p>I'm a 16-year-old passionate about cybersecurity. I participate in CTFs and use platforms like Hack The Box, TryHackMe and Olicyber to practice. I enjoy reversing challenges, web exploitation and network analysis.</p>
-        </div>
-        <div class="card">
-          <h4>Skills</h4>
-          <p>Penetration testing, vulnerability research, reverse engineering, network forensics. Tools: Burp, Nmap, Wireshark, Ghidra, Python.</p>
-        </div>
-        <div class="card" id="projects">
-          <h4>Featured</h4>
-          <div class="projects">
-            <div class="project"><div style="flex:1"><strong>Olicyber Writeups</strong><div class="muted">collection of writeups</div></div><div><a href="https://github.com/bosioF/OlicyberWriteUps" target="_blank">Repo</a></div></div>
-            <div class="project"><div style="flex:1"><strong>text2slide</strong><div class="muted">Script that converts text → animated slides (manim + moviepy)</div></div><div><a href="https://github.com/bosioF/text2slide" target="_blank">Repo</a></div></div>
+          <aside class="profile-card" aria-labelledby="profile-name">
+            <img src="assets/aboutMePhoto.jpg" class="avatar" />
+            <div class="meta">
+              <strong id="profile-name">Federico — @fedebosio</strong>
+              <div
+                style="margin-top: 8px; color: var(--muted); font-size: 0.95rem"
+              >
+                Active on HackTheBox • TryHackMe • Olicyber
+              </div>
+            </div>
+          </aside>
+        </section>
+        <section class="grid" id="about" aria-label="about">
+          <div class="card">
+            <h4>About me</h4>
+            <p>
+              I'm a 16-year-old passionate about cybersecurity. I participate in
+              CTFs and use platforms like Hack The Box, TryHackMe and Olicyber
+              to practice. I enjoy reversing challenges, web exploitation and
+              network analysis.
+            </p>
           </div>
+          <div class="card">
+            <h4>Skills</h4>
+            <p>
+              Penetration testing, vulnerability research, reverse engineering,
+              network forensics. Tools: Burp, Nmap, Wireshark, Ghidra, Python.
+            </p>
+          </div>
+          <div class="card featured" id="projects">
+            <h4>Featured</h4>
+            <div class="projects">
+              <div class="project">
+                <div style="flex: 1">
+                  <strong>Olicyber Writeups</strong>
+                  <div class="muted">collection of writeups</div>
+                </div>
+                <div>
+                  <a
+                    href="https://github.com/bosioF/OlicyberWriteUps"
+                    target="_blank"
+                    >Repo</a
+                  >
+                </div>
+              </div>
+              <div class="project">
+                <div style="flex: 1">
+                  <strong>text2slide</strong>
+                  <div class="muted">
+                    Script that converts text → animated slides (manim +
+                    moviepy)
+                  </div>
+                </div>
+                <div>
+                  <a href="https://github.com/bosioF/text2slide" target="_blank"
+                    >Repo</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="site-footer">
+        <div class="muted">&copy; 2025 Federico — CyberSec Portfolio</div>
+        <div class="socials">
+          <a href="https://github.com/bosioF" target="_blank">GitHub</a>
+          <a href="https://www.instagram.com/bosio.federico/" target="_blank"
+            >Instagram</a
+          >
+          <a id="discord-link" href="#">Discord</a>
         </div>
-      </section>
-    </main>
-    <footer class="site-footer">
-      <div class="muted">&copy; 2025 Federico — CyberSec Portfolio</div>
-      <div class="socials">
-        <a href="https://github.com/bosioF" target="_blank">GitHub</a>
-        <a href="https://www.instagram.com/bosio.federico/" target="_blank">Instagram</a>
-        <a id="discord-link" href="#">Discord</a>
-      </div>
-    </footer>
-  </div>
-  <script>
-    const texts=["Beginner-intermediate","Find the flag on this website",'print("Hello world!")',"CTF Player","admin' or 1=1-- ","Hunting for flags","Always learning"];
-    let textIndex=0,charIndex=0,isDeleting=false;const typingEl=document.getElementById('typing');
-    function typeEffect(){const current=texts[textIndex];if(isDeleting){typingEl.textContent=current.substring(0,charIndex-1);charIndex--}else{typingEl.textContent=current.substring(0,charIndex+1);charIndex++}let speed=isDeleting?60:100;if(!isDeleting&&charIndex===current.length){isDeleting=true;speed=1800}else if(isDeleting&&charIndex===0){isDeleting=false;textIndex=(textIndex+1)%texts.length;speed=500}setTimeout(typeEffect,speed)}
-    typeEffect();
-    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})}));
-    const canvas=document.getElementById('matrix');const ctx=canvas.getContext('2d');function resize(){canvas.width=innerWidth;canvas.height=innerHeight}window.addEventListener('resize',resize);resize();const cols=Math.floor(innerWidth/12);const drops=new Array(cols).fill(0);const chars="01ABCDEF@#$%*+-";function draw(){ctx.fillStyle='rgba(0,0,0,0.06)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='rgba(0,255,106,0.85)';ctx.font='12px monospace';for(let i=0;i<drops.length;i++){const txt=chars.charAt(Math.floor(Math.random()*chars.length));ctx.fillText(txt,i*12,drops[i]*12);if(drops[i]*12>canvas.height&&Math.random()>0.975)drops[i]=0;drops[i]++}}setInterval(draw,40);
-    document.getElementById('discord-link').addEventListener('click',e=>{e.preventDefault();alert('You can add me with this username: @fedebosio')});
-  </script>
-</body>
+      </footer>
+    </div>
+    <script>
+      const texts = [
+        "Beginner-intermediate",
+        'print("Hello world!")',
+        "CTF Player",
+        "admin' or 1=1-- ",
+        "Hunting for flags",
+        "Always learning",
+      ];
+      let textIndex = 0,
+        charIndex = 0,
+        isDeleting = false;
+      const typingEl = document.getElementById("typing");
+      function typeEffect() {
+        const current = texts[textIndex];
+        if (isDeleting) {
+          typingEl.textContent = current.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          typingEl.textContent = current.substring(0, charIndex + 1);
+          charIndex++;
+        }
+        let speed = isDeleting ? 60 : 100;
+        if (!isDeleting && charIndex === current.length) {
+          isDeleting = true;
+          speed = 1800;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          textIndex = (textIndex + 1) % texts.length;
+          speed = 500;
+        }
+        setTimeout(typeEffect, speed);
+      }
+      typeEffect();
+      document.querySelectorAll('a[href^="#"]').forEach((a) =>
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          const t = document.querySelector(a.getAttribute("href"));
+          if (t) t.scrollIntoView({ behavior: "smooth" });
+        })
+      );
+      const canvas = document.getElementById("matrix");
+      const ctx = canvas.getContext("2d");
+      function resize() {
+        canvas.width = innerWidth;
+        canvas.height = innerHeight;
+      }
+      window.addEventListener("resize", resize);
+      resize();
+      const cols = Math.floor(innerWidth / 12);
+      const drops = new Array(cols).fill(0);
+      const chars = "01ABCDEF@#$%*+-";
+      function draw() {
+        ctx.fillStyle = "rgba(0,0,0,0.06)";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "rgba(0,255,106,0.85)";
+        ctx.font = "12px monospace";
+        for (let i = 0; i < drops.length; i++) {
+          const txt = chars.charAt(Math.floor(Math.random() * chars.length));
+          ctx.fillText(txt, i * 12, drops[i] * 12);
+          if (drops[i] * 12 > canvas.height && Math.random() > 0.975)
+            drops[i] = 0;
+          drops[i]++;
+        }
+      }
+      setInterval(draw, 40);
+      document.getElementById("discord-link").addEventListener("click", (e) => {
+        e.preventDefault();
+        alert("You can add me with this username: @fedebosio");
+      });
+    </script>
+  </body>
 </html>
