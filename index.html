@@ -32,7 +32,17 @@
       <main id="home">
         <section class="hero">
           <div class="hero-inner">
-            <p class="tag">Hello, I'm Federico</p>
+            <p class="tag">Hello, I'm Federico, currently ... for me</p>
+              <script>
+                function updateTime() {
+                  let date = new Date();
+                  let time = date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+                  document.querySelector(".tag").innerHTML =
+                    `Hello, I'm Federico, currently ${time} for me`;
+                }
+                updateTime();
+                setInterval(updateTime, 60000);
+              </script>
             <h3 class="title">I build skills in cybersecurity & hacking</h3>
             <p class="lead">
               16‑year‑old security enthusiast — I play CTFs, with OSINT being my favourite category.
@@ -135,6 +145,11 @@
         "Hunting for flags",
         "Always learning",
       ];
+
+      let date = new Date();
+      let time = date.toLocaleTimeString();
+      document.querySelector(".tag").innerHTML = `Hello, I'm Federico, currently ${time} for me`;
+
       let textIndex = 0,
         charIndex = 0,
         isDeleting = false;
