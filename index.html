@@ -36,7 +36,11 @@
               <script>
                 function updateTime() {
                   let date = new Date();
-                  let time = date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+                  let time = date.toLocaleTimeString([], {
+                      hour: '2-digit',
+                      minute: '2-digit',
+                      second: undefined
+                    });
                   document.querySelector(".tag").innerHTML =
                     `Hello, I'm Federico, currently ${time} for me`;
                 }
