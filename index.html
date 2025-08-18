@@ -32,20 +32,24 @@
       <main id="home">
         <section class="hero">
           <div class="hero-inner">
-            <p class="tag">Hello, I'm Federico, currently ... for me</p>
+             <p class="tag">Hello, I'm Federico, currently ... for me</p>
               <script>
                 function updateTime() {
                   let date = new Date();
-                  let time = date.toLocaleTimeString([], {
-                      hour: '2-digit',
-                      minute: '2-digit',
-                      second: undefined
-                    });
+                  let time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                   document.querySelector(".tag").innerHTML =
                     `Hello, I'm Federico, currently ${time} for me`;
                 }
+
                 updateTime();
-                setInterval(updateTime, 60000);
+
+                let now = new Date();
+                let delay = (60 - now.getSeconds()) * 1000;
+
+                setTimeout(function() {
+                  updateTime();
+                  setInterval(updateTime, 60000);
+                }, delay);
               </script>
             <h3 class="title">I build skills in cybersecurity & hacking</h3>
             <p class="lead">
