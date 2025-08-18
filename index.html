@@ -38,17 +38,15 @@
                         let date = new Date();
                         let hours = date.getHours().toString().padStart(2, '0');
                         let minutes = date.getMinutes().toString().padStart(2, '0');
-                        let time = `${hours}:${minutes}`;
-                        document.querySelector(".tag").innerHTML = `Hello, I'm Federico, currently ${time} for me`;
+                        let seconds = date.getSeconds().toString().padStart(2, '0');
+                        let time = `${hours}:${minutes}:${seconds}`;
+                        document.querySelector(".tag").innerHTML =
+                            `Hello, I'm Federico, currently ${time} for me`;
                     }
 
                     updateTime();
-                    let now = new Date();
-                    let delay = (60 - now.getSeconds()) * 1000;
-                    setTimeout(function() {
-                        updateTime();
-                        setInterval(updateTime, 60000);
-                    }, delay);
+
+                    setInterval(updateTime, 1000);
                 </script>
             <h3 class="title">I build skills in cybersecurity & hacking</h3>
             <p class="lead">
