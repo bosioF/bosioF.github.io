@@ -33,24 +33,27 @@
         <section class="hero">
           <div class="hero-inner">
              <p class="tag">Hello, I'm Federico, currently ... for me</p>
-              <script>
-                function updateTime() {
-                  let date = new Date();
-                  let time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                  document.querySelector(".tag").innerHTML =
-                    `Hello, I'm Federico, currently ${time} for me`;
-                }
+                <script>
+                    function updateTime() {
+                        let date = new Date();
+                        let formatter = new Intl.DateTimeFormat('en-US', {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            hour12: false
+                        });
+                        let time = formatter.format(date);
+                        document.querySelector(".tag").innerHTML =
+                            `Hello, I'm Federico, currently ${time} for me`;
+                    }
 
-                updateTime();
-
-                let now = new Date();
-                let delay = (60 - now.getSeconds()) * 1000;
-
-                setTimeout(function() {
-                  updateTime();
-                  setInterval(updateTime, 60000);
-                }, delay);
-              </script>
+                    updateTime();
+                    let now = new Date();
+                    let delay = (60 - now.getSeconds()) * 1000;
+                    setTimeout(function() {
+                        updateTime();
+                        setInterval(updateTime, 60000);
+                    }, delay);
+                </script>
             <h3 class="title">I build skills in cybersecurity & hacking</h3>
             <p class="lead">
               16‑year‑old security enthusiast — I play CTFs, with OSINT being my favourite category.
