@@ -2,232 +2,539 @@
 <html lang="it">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
-    <title>@bosio — Cybersec Portfolio</title>
-    <meta
-      name="description"
-      content="Portfolio di Federico — CTF player & cybersecurity enthusiast"
-    />
-    <link rel="icon" href="icons/favicon.ico" />
-    <link rel="stylesheet" href="css/main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Federico Bosio — Cybersecurity Specialist</title>
+    <meta name="description" content="Portfolio di Federico Bosio — CTF player & cybersecurity enthusiast" />
+    <link rel="icon" href="public/favicon.ico"/>
+    <link rel="stylesheet" href="css/main.css">   
   </head>
   <body>
-    <canvas id="matrix" aria-hidden="true"></canvas>
-    <div class="wrap">
-      <header class="site-header">
-        <div class="brand">
-          <div class="logo-dot" aria-hidden="true"></div>
-          <div>
-            <h1>@bosio</h1>
-            <p class="muted">CTF player · Cybersecurity enthusiast</p>
+    <div class="bg-animation"></div>
+    <div class="theme-transition" id="themeTransition">
+      <div class="transition-stripe"></div>
+      <div class="transition-stripe"></div>
+    </div>
+
+    <header class="header" id="header">
+      <nav class="nav">
+        <a href="#home" class="logo">
+          <div>Federico Bosio</div>
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">Chi sono</a></li>
+          <li><a href="#projects" class="nav-link">Progetti</a></li>
+          <li><a href="#contact" class="nav-link">Contatti</a></li>
+        </ul>
+
+        <div style="display: flex; align-items: center; gap: 1rem">
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <div class="theme-toggle-slider">
+              <span id="themeIcon">☀️</span>
+            </div>
+          </button>
+
+          <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <section class="hero" id="home">
+      <div class="hero-container">
+        <div class="hero-content">
+          <h1>Cybersecurity<br />Specialist</h1>
+          <p class="hero-subtitle">
+            CTF Player • Penetration Tester • Security Researcher
+          </p>
+          <p class="hero-description">
+            Appassionato di sicurezza informatica con focus su penetration
+            testing ed OSINT.
+          </p>
+
+          <div class="typing-container">
+            <span class="typing-text" id="typingText">Intermedio-avanzato</span>
+            <span class="typing-cursor">|</span>
+          </div>
+
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">Vedi i miei progetti</a>
+            <a href="https://github.com/bosioF" target="_blank" class="btn btn-secondary">
+              GitHub →
+            </a>
           </div>
         </div>
-        <nav class="primary" aria-label="Primary">
+
+        <div class="profile-card">
+          <div class="profile-image">
+            <img src="assets/aboutMePhoto.jpg">
+          </div>
+          <h3 class="profile-name">Federico</h3>
+          <p class="profile-role">@fedebosio</p>
+          <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 1rem">
+            Attivo su HackTheBox e TryHackMe
+          </p>
+
+          <div class="profile-stats">
+            <div class="stat">
+              <span class="stat-number">1</span>
+              <span class="stat-label">Anno</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">15+</span>
+              <span class="stat-label">CTF</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">∞</span>
+              <span class="stat-label">Passione</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="main">
+      <section class="section" id="about">
+        <div class="section-header">
+          <h2 class="section-title">Chi sono</h2>
+          <p class="section-subtitle">
+            Un viaggio iniziato per curiosità, diventato passione
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-card fade-in-up">
+            <div class="about-card-icon">🎯</div>
+            <h3>La mia missione</h3>
+            <p>
+              Appassionato di cybersecurity. Sempre pronto ad imparare ed a partecipare attivamente in competizioni CTF per
+              affinare costantemente le mie competenze.
+            </p>
+          </div>
+
+          <div class="about-card fade-in-up">
+            <div class="about-card-icon">⚡</div>
+            <h3>Competenze principali</h3>
+            <p>
+              OSINT, network forensics, web application security. Utilizzo
+              strumenti come Burp Suite, Nmap, Wireshark, Ghidra e sviluppo
+              script in Python per automatizzare processi di sicurezza.
+            </p>
+          </div>
+
+          <div class="about-card fade-in-up">
+            <div class="about-card-icon">🚀</div>
+            <h3>Sempre in evoluzione</h3>
+            <p>
+              La cybersecurity è un campo in costante evoluzione. Mi tengo
+              sempre aggiornato sulle ultime minacce, tecniche di attacco e
+              difesa, partecipando a comunità specializzate e seguendo le ultime
+              ricerche in ambito security.
+            </p>
+          </div>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-item">
+            <div class="skill-name">JavaScript</div>
+            <div class="skill-level">Base</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">C#</div>
+            <div class="skill-level">Base-Intermedio</div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-name">Python</div>
+            <div class="skill-level">Intermedio</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="section-header">
+          <h2 class="section-title">Progetti principali</h2>
+          <p class="section-subtitle">
+            Una selezione dei miei lavori più significativi nell'ambito
+            cybersecurity
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          <div class="project-card fade-in-up">
+            <div class="project-header">
+              <h3 class="project-title">
+                🏆 Olicyber Writeups
+                <span class="project-type">Security</span>
+              </h3>
+              <p class="project-description">
+                Raccolta completa e dettagliata di writeups per le sfide
+                Olicyber. Documentazione metodica delle tecniche utilizzate,
+                analisi delle vulnerabilità scoperte e soluzioni step-by-step
+                per ogni categoria.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">CTF</span>
+                <span class="tech-tag">Writeups</span>
+                <span class="tech-tag">Security Analysis</span>
+                <span class="tech-tag">Documentation</span>
+              </div>
+            </div>
+            <div class="project-links">
+              <a
+                href="https://github.com/bosioF/OlicyberWriteUps"
+                target="_blank"
+                class="project-link"
+              >
+                Esplora Repo
+              </a>
+            </div>
+          </div>
+
+          <div class="project-card fade-in-up">
+            <div class="project-header">
+              <h3 class="project-title">
+                🎬 Text2Slide
+                <span class="project-type">Automation</span>
+              </h3>
+              <p class="project-description">
+                Tool avanzato per la conversione automatica di contenuti
+                testuali in presentazioni animate professionali. Utilizza
+                librerie di animazione matematica e processing video per output
+                di alta qualità.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Manim</span>
+                <span class="tech-tag">MoviePy</span>
+                <span class="tech-tag">Automation</span>
+              </div>
+            </div>
+            <div class="project-links">
+              <a
+                href="https://github.com/bosioF/text2slide"
+                target="_blank"
+                class="project-link"
+              >
+                Esplora Codice
+              </a>
+            </div>
+          </div>
+
+          <div class="project-card fade-in-up">
+            <div class="project-header">
+              <h3 class="project-title">
+                🔒 Security Tools Collection
+                <span class="project-type">In Development</span>
+              </h3>
+              <p class="project-description">
+                Collezione di script e tool personalizzati per penetration
+                testing e security assessment. Include scanner automatizzati,
+                payload generators e utility per l'analisi delle vulnerabilità.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Bash</span>
+                <span class="tech-tag">Penetration Testing</span>
+                <span class="tech-tag">Automation</span>
+              </div>
+            </div>
+            <div class="project-links">
+              <a href="#" class="project-link disabled"> Coming Soon </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="section-header">
+          <h2 class="section-title">Mettiamoci in contatto</h2>
+          <p class="section-subtitle">
+            Sempre disponibile per collaborazioni, discussioni tecniche o nuove
+            opportunità
+          </p>
+        </div>
+
+        <div class="contact-container">
+          <div class="contact-links">
+            <a href="https://github.com/bosioF" target="_blank" class="contact-link">
+               <img src="assets/icons/github-2d2d2d.svg" width="25px" alt="github" aria-label="github">
+              <span>GitHub</span>
+            </a>
+            <a href="https://www.instagram.com/bosio.federico/" target="_blank" class="contact-link">
+               <img src="assets/icons/instagram-2d2d2d.svg" width="25px" alt="instagram" aria-label="instagram">
+               <span>Instagram</span>
+              </a>
+              <a href="#" class="contact-link" id="discordLink">
+                <img src="assets/icons/discord-2d2d2d.svg" width="35px" alt="discord" aria-label="discord">
+                <span>Discord</span>
+              </a>
+              <a href="mailto:federico.bosio@email.com" class="contact-link">
+                <img src="assets/icons/envelope-2d2d2d.svg" width="25px" alt="email" aria-label="email">
+              <span>Email</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div>&copy; 2025 Federico Bosio — Cybersecurity Portfolio</div>
+        <div class="footer-links">
           <a href="#home">Home</a>
           <a href="#about">About</a>
           <a href="#projects">Projects</a>
           <a href="#contact">Contact</a>
-        </nav>
-      </header>
-      <main id="home">
-        <section class="hero">
-          <div class="hero-inner">
-             <p class="tag">Hello, I'm Federico, currently ... for me</p>
-                <script>
-                    function updateTime() {
-                        let date = new Date();
-                        let hours = date.getHours().toString().padStart(2, '0');
-                        let minutes = date.getMinutes().toString().padStart(2, '0');
-                        let time = `${hours}:${minutes}`;
-                        document.querySelector(".tag").innerHTML = `Hello, I'm Federico, currently ${time} for me`;
-                    }
-
-                    updateTime();
-                    let now = new Date();
-                    let delay = (60 - now.getSeconds()) * 1000;
-                    setTimeout(function() {
-                        updateTime();
-                        setInterval(updateTime, 60000);
-                    }, delay);
-                </script>
-            <h3 class="title">I build skills in cybersecurity & hacking</h3>
-            <p class="lead">
-              16‑year‑old security enthusiast — I play CTFs, with OSINT being my favourite category.
-            </p>
-            <div class="typing" id="typing">Loading...</div>
-            <div class="cta-row">
-              <button
-                class="btn primary"
-                onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})"
-              >
-                View projects
-              </button>
-              <a
-                class="btn"
-                href="https://github.com/bosioF"
-                target="_blank"
-                rel="noopener"
-                >GitHub</a
-              >
-            </div>
-          </div>
-          <aside class="profile-card" aria-labelledby="profile-name">
-            <img src="assets/aboutMePhoto.jpg" class="avatar" alt="Federico's profile picture" />
-            <div class="meta">
-              <strong id="profile-name">Federico — @fedebosio</strong>
-              <div
-                style="margin-top: 8px; color: var(--muted); font-size: 0.95rem"
-              >
-                Active on HackTheBox • TryHackMe • Olicyber
-              </div>
-            </div>
-          </aside>
-        </section>
-        <section class="grid" id="about" aria-label="about">
-          <div class="card">
-            <h4>About me</h4>
-            <p>
-              I'm a 16-year-old passionate about cybersecurity. I participate in
-              CTFs and use platforms like Hack The Box, TryHackMe and Olicyber
-              to practice. I enjoy learning.
-            </p>
-          </div>
-          <div class="card">
-            <h4>Languages</h4>
-            <p>
-              Python, C#, JS, currently learning C.
-            </p>
-          </div>
-          <div class="card featured" id="projects">
-            <h4>Featured</h4>
-            <div class="projects">
-              <div class="project">
-                <div>
-                  <strong>Olicyber Writeups</strong>
-                  <div class="muted">collection of writeups</div>
-                </div>
-                <div>
-                  <a
-                    href="https://github.com/bosioF/OlicyberWriteUps"
-                    target="_blank"
-                    >Repo</a
-                  >
-                </div>
-              </div>
-              <div class="project">
-                <div>
-                  <strong>text2slide</strong>
-                  <div class="muted">
-                    Script that converts text → animated slides (manim +
-                    moviepy)
-                  </div>
-                </div>
-                <div>
-                  <a href="https://github.com/bosioF/text2slide" target="_blank"
-                    >Repo</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-      <footer class="site-footer" id="contact">
-        <div class="muted">&copy; 2025 Federico — CyberSec Portfolio</div>
-        <div class="socials">
-          <a href="https://github.com/bosioF" target="_blank">GitHub</a>
-          <a href="https://www.instagram.com/bosio.federico/" target="_blank"
-            >Instagram</a
-          >
-          <a id="discord-link" href="#">Discord</a>
         </div>
-      </footer>
-    </div>
+      </div>
+    </footer>
+
     <script>
-      const texts = [
-        "Beginner-intermediate",
-        'print("Hello world!")',
-        "CTF Player",
-        "admin' or 1=1-- ",
-        "Hunting for flags",
-        "Always learning",
+     
+      const typingTexts = [
+        "Intermedio-avanzato",
+        'print("Hello, World!")',
+        "CTF Player & Hacker",
+        "admin' OR 1=1-- ",
+        "Hunting for vulnerabilities",
+        "Always learning, always improving",
+        "#!/bin/bash",
       ];
 
-      let date = new Date();
-      let time = date.toLocaleTimeString();
-      document.querySelector(".tag").innerHTML = `Hello, I'm Federico, currently ${time} for me`;
+      let textIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      const typingElement = document.getElementById("typingText");
 
-      let textIndex = 0,
-        charIndex = 0,
-        isDeleting = false;
-      const typingEl = document.getElementById("typing");
-      
       function typeEffect() {
-        const current = texts[textIndex];
+        const currentText = typingTexts[textIndex];
+
         if (isDeleting) {
-          typingEl.textContent = current.substring(0, charIndex - 1);
+          typingElement.textContent = currentText.substring(0, charIndex - 1);
           charIndex--;
         } else {
-          typingEl.textContent = current.substring(0, charIndex + 1);
+          typingElement.textContent = currentText.substring(0, charIndex + 1);
           charIndex++;
         }
-        let speed = isDeleting ? 60 : 100;
-        if (!isDeleting && charIndex === current.length) {
+
+        let speed = isDeleting ? 50 : 100;
+
+        if (!isDeleting && charIndex === currentText.length) {
           isDeleting = true;
-          speed = 1800;
+          speed = 2000;
         } else if (isDeleting && charIndex === 0) {
           isDeleting = false;
-          textIndex = (textIndex + 1) % texts.length;
+          textIndex = (textIndex + 1) % typingTexts.length;
           speed = 500;
         }
+
         setTimeout(typeEffect, speed);
       }
-      
+
+     
       typeEffect();
-      
-      document.querySelectorAll('a[href^="#"]').forEach((a) =>
-        a.addEventListener("click", (e) => {
-          e.preventDefault();
-          const target = document.querySelector(a.getAttribute("href"));
-          if (target) target.scrollIntoView({ behavior: "smooth" });
-        })
-      );
-      
-      const canvas = document.getElementById("matrix");
-      const ctx = canvas.getContext("2d");
-      
-      function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+
+     
+      const themeToggle = document.getElementById("themeToggle");
+      const themeIcon = document.getElementById("themeIcon");
+      const themeTransition = document.getElementById("themeTransition");
+
+     
+      const currentTheme = localStorage.getItem("theme") || "light";
+      document.documentElement.setAttribute("data-theme", currentTheme);
+
+      if (currentTheme === "dark") {
+        themeToggle.classList.add("dark");
+        themeIcon.textContent = "🌙";
       }
-      
-      window.addEventListener("resize", resize);
-      resize();
-      
-      const cols = Math.floor(window.innerWidth / 12);
-      const drops = new Array(cols).fill(0);
-      const chars = "01ABCDEF@#$%*+-";
-      
-      function draw() {
-        ctx.fillStyle = "rgba(0,0,0,0.06)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "rgba(0,255,106,0.85)";
-        ctx.font = "12px monospace";
-        for (let i = 0; i < drops.length; i++) {
-          const txt = chars.charAt(Math.floor(Math.random() * chars.length));
-          ctx.fillText(txt, i * 12, drops[i] * 12);
-          if (drops[i] * 12 > canvas.height && Math.random() > 0.975)
-            drops[i] = 0;
-          drops[i]++;
-        }
-      }
-      
-      setInterval(draw, 40);
-      
-      document.getElementById("discord-link").addEventListener("click", (e) => {
-        e.preventDefault();
-        alert("You can add me with this username: @fedebosio");
+
+      themeToggle.addEventListener("click", () => {
+        themeTransition.classList.add("active");
+
+        setTimeout(() => {
+          const currentTheme =
+            document.documentElement.getAttribute("data-theme");
+          const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+          document.documentElement.setAttribute("data-theme", newTheme);
+          localStorage.setItem("theme", newTheme);
+
+          themeToggle.classList.toggle("dark");
+          themeIcon.textContent = newTheme === "dark" ? "🌙" : "☀️";
+        }, 300);
+
+        setTimeout(() => {
+          themeTransition.classList.remove("active");
+        }, 600);
       });
+
+      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      const navMenu = document.getElementById("navMenu");
+      const header = document.getElementById("header");
+
+      mobileMenuBtn.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        mobileMenuBtn.classList.toggle("active");
+        setTimeout(() => { header.classList.toggle("active"); }, 75);
+      });
+
+      document.querySelectorAll(".nav-link").forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute("href");
+          const targetSection = document.querySelector(targetId);
+
+          if (targetSection) {
+            targetSection.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+
+          navMenu.classList.remove("active");
+
+          document
+            .querySelectorAll(".nav-link")
+            .forEach((l) => l.classList.remove("active"));
+          link.classList.add("active");
+        });
+      });
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+
+      document.getElementById("discordLink").addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const modal = document.createElement("div");
+        modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.8);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                backdrop-filter: blur(10px);
+            `;
+
+        const content = document.createElement("div");
+        content.style.cssText = `
+                background: var(--surface-elevated);
+                padding: 2rem;
+                border-radius: 16px;
+                text-align: center;
+                max-width: 400px;
+                margin: 1rem;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                border: 1px solid var(--border);     
+              `;
+
+        content.innerHTML = `
+                <h3 style="margin-bottom: 1rem; color: var(--text-primary);">Contattami su Discord</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Puoi aggiungermi con questo username:</p>
+                <code style="background: var(--surface-alt); padding: 0.5rem 1rem; border-radius: 8px; font-family: monospace; font-weight: 600; color: var(--primary);">@fedebosio</code>
+                <br><br>
+                <button style="background: var(--primary); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 600; cursor: pointer;">Chiudi</button>
+            `;
+
+        modal.appendChild(content);
+        document.body.appendChild(modal);
+
+        const closeBtn = content.querySelector("button");
+        const closeModal = () => document.body.removeChild(modal);
+
+        closeBtn.addEventListener("click", closeModal);
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) closeModal();
+        });
+
+        const escapeHandler = (e) => {
+          if (e.key === "Escape") {
+            closeModal();
+            document.removeEventListener("keydown", escapeHandler);
+          }
+        };
+        document.addEventListener("keydown", escapeHandler);
+      });
+
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("fade-in-up");
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll(".about-card, .project-card").forEach((el) => {
+        observer.observe(el);
+      });
+
+      window.addEventListener("scroll", () => {
+        const sections = document.querySelectorAll("section[id]");
+        const scrollPos = window.scrollY + 100;
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          const sectionId = section.getAttribute("id");
+
+          if (
+            scrollPos >= sectionTop &&
+            scrollPos < sectionTop + sectionHeight
+          ) {
+            document.querySelectorAll(".nav-link").forEach((link) => {
+              link.classList.remove("active");
+              if (link.getAttribute("href") === `#${sectionId}`) {
+                link.classList.add("active");
+              }
+            });
+          }
+        });
+      });
+
+      document.querySelector(".btn-primary").addEventListener("click", (e) => {
+        e.preventDefault();
+        document.getElementById("projects").scrollIntoView({
+          behavior: "smooth",
+        });
+      });
+
+      if (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2) {
+        document.documentElement.style.setProperty(
+          "--animation-duration",
+          "0.2s"
+        );
+      }
+
+      document
+        .querySelectorAll(".project-card, .about-card")
+        .forEach((card) => {
+          card.addEventListener("mouseenter", () => {
+            card.style.transform = "translateY(-8px) scale(1.02)";
+          });
+
+          card.addEventListener("mouseleave", () => {
+            card.style.transform = "translateY(0) scale(1)";
+          });
+        });
     </script>
   </body>
 </html>
