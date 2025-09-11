@@ -554,7 +554,7 @@ body {
 
 .project-type {
   background: var(--primary);
-  color: white;
+  color: black;
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
   font-size: 0.75rem;
