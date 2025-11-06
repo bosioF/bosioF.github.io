@@ -157,6 +157,11 @@
       font-weight: 400;
     }
 
+    #rootrunners {
+      text-decoration: none;
+      color: var(--accent-cyan);
+    }
+
     .terminal-window {
       background: var(--bg-card);
       border: 1px solid var(--border);
