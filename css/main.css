@@ -160,6 +160,13 @@
     #rootrunnersLink {
       text-decoration: none;
       color: var(--accent-cyan);
+      display: inline-block;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    #rootrunnersLink:hover {
+      transform: translateY(-10px);
+      color: var(--accent-blue, #00bfff);
     }
 
     .terminal-window {
@@ -438,12 +445,32 @@
       font-size: 1.1rem;
     }
 
-    
-    .skills-grid {
+    .section-subtitle-tools {
+      margin-top: 0;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    /* .skill-desc {
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    } */
+
+     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
       margin-top: 2rem;
+    }
+
+    #skills {
+      padding-bottom: 2rem;
+    }
+
+    #tools {
+      padding-top: 2rem;
     }
 
     .skill-card {
@@ -488,6 +515,8 @@
       font-weight: 700;
       color: var(--accent-cyan);
       margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: center;
     }
 
     .skill-desc {
