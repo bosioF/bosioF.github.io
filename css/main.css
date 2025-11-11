@@ -68,17 +68,22 @@
       z-index: 1000;
     }
 
-    .logo {
+    #logo {
       font-size: 1.2rem;
       font-weight: 700;
       color: var(--accent-cyan);
       text-decoration: none;
       font-family: monospace;
+      transition: opacity 0.2s ease;
     }
 
-    .logo::before {
+    #logo::before {
       content: '> ';
       color: var(--accent-green);
+    }
+    
+    #logo.show {
+      opacity: 1;
     }
 
     .nav-links {
