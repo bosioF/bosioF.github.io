@@ -1,298 +1,356 @@
 <!DOCTYPE html>
 <html lang="it">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>about b0510</title>
-  <meta name="description" content="Bosio&apos;s portfolio — CTF player & cybersecurity enthusiast">
-
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="icon" type="image/x-icon" href="public/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="public/apple-touch-icon.png">
-  <link rel="manifest" href="public/site.webmanifest">
-
-</head>
-<body>
-  <canvas id="matrix"></canvas>
-  <div class="terminal-bg"></div>
-
-  <nav>
-    <a href="#" id="logo" onclick="topFunc()" title="goTop">b0510</a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="mobile-menu-btn" id="mobileBtn">☰</button>
-  </nav>
-
-  <section class="hero">
-    <div class="hero-content">
-      <h1 class="glitch">Federico Bosio</h1>
-        <p class="subtitle">
-          CTF Player, Cybersecurity Enthusiast and member of
-          <a id="rootrunnersLink" href="https://rootrunners.dev/" target="_blank">RootRunners</a>
-        </p>
-      <div class="terminal-window">
-        <div class="terminal-header">
-          <div class="terminal-btn"></div>
-          <div class="terminal-btn"></div>
-          <div class="terminal-btn"></div>
-        </div>
-        <div class="terminal-body" id="terminalBody">
-          <div class="terminal-line">
-            <span class="prompt">└─$</span>
-            <span class="command">whoami</span>
-          </div>
-          <div class="terminal-line">
-            <span class="output">b0510@RootRunners</span>
-          </div>
-          <div class="terminal-line">
-            <span class="prompt">└─$</span>
-            <span class="command">cat .interests.txt</span>
-          </div>
-          <div class="terminal-line">
-            <span class="output">→ Penetration Testing</span>
-          </div>
-          <div class="terminal-line">
-            <span class="output">→ OSINT, Web & Software Security</span>
-          </div>
-          <div class="terminal-line">
-            <span class="output">→ CTF Competitions</span>
-          </div>
-          <div class="terminal-line" id="inputLine">
-            <span class="prompt">└─$</span>
-            <input type="text" id="terminalInput" autocomplete="off" spellcheck="false">
-          </div>
-        </div>
-      </div>
-
-      <div class="stats-grid">
-        <div class="stat-card">
-          <span class="stat-number">1</span>
-          <span class="stat-label">Year</span>
-        </div>
-        <!--<div class="stat-card">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>about b0510</title>
+        <meta name="description" content="Bosio's portfolio — CTF player & cybersecurity enthusiast">
+        <link rel="stylesheet" href="src/css/main.css">
+        <link rel="icon" type="image/x-icon" href="public/favicon.ico">
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="public/favicon-32x32.png"
+        >
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="public/favicon-16x16.png"
+        >
+        <link rel="apple-touch-icon" sizes="180x180" href="public/apple-touch-icon.png">
+        <link rel="manifest" href="public/site.webmanifest">
+        <script async data-id="101499754" src="//static.getclicky.com/js"></script>
+    </head>
+    <body>
+        <canvas id="matrix"></canvas>
+        <div class="terminal-bg"></div>
+        <nav>
+            <a
+                href="#"
+                id="logo"
+                onclick="topFunc()"
+                title="goTop"
+            >b0510</a>
+            <ul class="nav-links" id="navLinks">
+                <li>
+                    <a href="#about">About</a>
+                </li>
+                <li>
+                    <a href="#skills">Skills</a>
+                </li>
+                <li>
+                    <a href="#projects">Projects</a>
+                </li>
+                <li>
+                    <a href="src/en/index.html">Articles</a>
+                </li>
+                <li>
+                    <a href="#contact">Contact</a>
+                </li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileBtn">☰</button>
+        </nav>
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="glitch">b0510</h1>
+                <p class="subtitle">
+                    CTF Player, Cybersecurity Enthusiast and member of
+                    <a id="rootrunnersLink" href="https://rootrunners.dev/" target="_blank">
+                        RootRunners
+                    </a
+          >
+                </p>
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="terminal-btn"></div>
+                        <div class="terminal-btn"></div>
+                        <div class="terminal-btn"></div>
+                    </div>
+                    <div class="terminal-body" id="terminalBody">
+                        <div class="terminal-line">
+                            <span class="prompt">└─$</span>
+                            <span class="command">whoami</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="output">b0510@RootRunners</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="prompt">└─$</span>
+                            <span class="command">cat .interests.txt</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="output">→ Penetration Testing</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="output">→ OSINT, Web & Software Security</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="output">→ CTF Competitions</span>
+                        </div>
+                        <div class="terminal-line" id="inputLine">
+                            <span class="prompt">└─$</span>
+                            <input
+                                type="text"
+                                id="terminalInput"
+                                autocomplete="off"
+                                spellcheck="false"
+                            >
+                        </div>
+                    </div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">Year</span>
+                    </div>
+                    <!--<div class="stat-card">
           <span class="stat-number">20+</span>
           <span class="stat-label">CTFs</span>
         </div>
       -->
-      </div>
-
-      <div class="cta-buttons">
-        <a href="#projects" class="btn">View Projects</a>
-        <a href="https://github.com/bosioF" target="_blank" class="btn btn-secondary">GitHub →</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="about">
-    <div class="container">
-      <h2 class="reveal">About Me</h2>
-      <p class="section-subtitle reveal">Passionate about breaking things to understand how they work</p>
-
-      <div class="skills-grid">
-        <div class="skill-card reveal">
-          <div class="skill-name">Mission</div>
-          <p class="skill-desc">Join TeamItaly by practicing CTF challenges and studying. My favourite platforms are HTB, TryHackMe, and Olicyber's Training Portal</p>
-        </div>
-
-        <div class="skill-card reveal">
-          <div class="skill-name">Specialization</div>
-          <p class="skill-desc">Skilled in OSINT, Web App Security, Burp Suite, and Python, with a strong interest in advancing my knowledge in software security.</p>
-        </div>
-
-        <div class="skill-card reveal">
-          <div class="skill-name">Growth</div>
-          <p class="skill-desc">Constantly learning new attack techniques, vulnerabilities, and defense mechanisms</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="skills">
-  <div class="container">
-    <h2 class="reveal">Technical Arsenal</h2>
-    <p class="section-subtitle reveal">Languages I work with</p>
-
-    <div class="skills-grid">
-      <div class="skill-card reveal">
-        <div class="skill-name">Python</div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-name">C</div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-name">C#</div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-name">Rust</div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-name">JavaScript</div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-name">Bash</div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-name">Assembly x86 (base)</div>
-        <!-- <p class="skill-desc">Basic</p> -->
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-name">HTML, CSS</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="tools">
-  <div class="container">
-    <p class="section-subtitle-tools reveal">Some tools that I use</p>
-
-    <div class="skills-grid">
-      <div class="skill-card reveal">
-        <div class="skill-name">Git</div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-name">Docker</div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-name">Burp Suite</div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-name">GDB + GEF</div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-name">Ghidra</div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-name">IDA</div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-name">Wireshark</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-  <section id="projects">
-    <div class="container">
-      <h2 class="reveal">Featured Projects</h2>
-      <p class="section-subtitle reveal">Building tools and solving challenges</p>
-
-      <div class="projects-grid">
-        <div class="project-card reveal">
-          <div class="project-header">
-            <h3 class="project-title">
-              DockerChat
-              <span class="badge">Released</span>
-            </h3>
-            <p class="project-desc">Docker-based end-to-end encrypted chat application simulating a secure network environment.</p>
-          </div>
-          <div class="project-body">
-            <div class="tech-tags">
-              <span class="tech-tag">Docker</span>
-              <span class="tech-tag">Bun</span>
-              <span class="tech-tag">Preact</span>
-              <span class="tech-tag">TypeScript</span>
-              <span class="tech-tag">Encryption</span>
-              <span class="tech-tag">Redis</span>
-              <span class="tech-tag">Flask</span>
+                </div>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn">View Projects</a>
+                    <a href="https://github.com/bosioF" target="_blank" class="btn btn-secondary">
+                        GitHub →
+                    </a
+          >
+                </div>
             </div>
-            <a href="https://github.com/Nick-Maro/DockerChat" target="_blank" class="project-link">
-              Explore Repository →
-            </a>
-          </div>
-        </div>
-
-        <div class="project-card reveal">
-          <div class="project-header">
-            <h3 class="project-title">
-              Olicyber Write-ups
-              <span class="badge">Active</span>
-            </h3>
-            <p class="project-desc">Complete collection of detailed CTF write-ups for Olicyber challenges with frequent updates.</p>
-          </div>
-          <div class="project-body">
-            <div class="tech-tags">
-              <span class="tech-tag">CTF</span>
-              <span class="tech-tag">Write-ups</span>
-              <span class="tech-tag">Cybersecurity</span>
+        </section>
+        <section id="about">
+            <div class="container">
+                <h2 class="reveal">About Me</h2>
+                <p class="section-subtitle reveal">
+                    Passionate about breaking things to understand how they work
+                </p>
+                <div class="skills-grid">
+                    <div class="skill-card reveal">
+                        <div class="skill-name">Mission</div>
+                        <p class="skill-desc">
+                            Join TeamItaly by practicing CTF challenges and studying. My
+              favourite platforms are HTB, TryHackMe, and Olicyber's Training
+              Portal
+                        </p>
+                    </div>
+                    <div class="skill-card reveal">
+                        <div class="skill-name">Specialization</div>
+                        <p class="skill-desc">
+                            Skilled in OSINT, Web App Security, Burp Suite, and Python, with a
+              strong interest in advancing my knowledge in software security.
+                        </p>
+                    </div>
+                    <div class="skill-card reveal">
+                        <div class="skill-name">Growth</div>
+                        <p class="skill-desc">
+                            Constantly learning new attack techniques, vulnerabilities, and
+              defense mechanisms
+                        </p>
+                    </div>
+                </div>
             </div>
-            <a href="https://github.com/bosioF/OlicyberWriteUps" target="_blank" class="project-link">
-              Explore Repository →
-            </a>
-          </div>
-        </div>
-
-        <div class="project-card reveal">
-          <div class="project-header">
-            <h3 class="project-title">
-              CeditX
-              <span class="badge wip">Discontinued</span>
-            </h3>
-            <p class="project-desc">Lightweight hex editor in C for binary file analysis. Features direct byte editing, hex pattern search, and safe memory management. Isn't receiving anymore updates at the moment.</p>
-          </div>
-          <div class="project-body">
-            <div class="tech-tags">
-              <span class="tech-tag">C</span>
-              <span class="tech-tag">Hex Editor</span>
-              <span class="tech-tag">Binary Analysis</span>
+        </section>
+        <section id="skills">
+            <div class="container">
+                <h2 class="reveal">Technical Arsenal</h2>
+                <p class="section-subtitle reveal">Languages I work with</p>
+                <div class="skills-grid">
+                    <div class="skill-card reveal">
+                        <div class="skill-name">Python</div>
+                    </div>
+                    <div class="skill-card reveal">
+                        <div class="skill-name">C</div>
+                    </div>
+                    <div class="skill-card reveal">
+                        <div class="skill-name">C#</div>
+                    </div>
+                    <div class="skill-card reveal">
+                        <div class="skill-name">Rust</div>
+                    </div>
+                    <div class="skill-card reveal">
+                        <div class="skill-name">JavaScript</div>
+                    </div>
+                    <div class="skill-card reveal">
+                        <div class="skill-name">Bash</div>
+                    </div>
+                    <div class="skill-card reveal">
+                        <div class="skill-name">Assembly x86 (base)</div>
+                        <!-- <p class="skill-desc">Basic</p> -->
+                    </div>
+                    <div class="skill-card reveal">
+                        <div class="skill-name">HTML, CSS</div>
+                    </div>
+                </div>
             </div>
-            <a href="https://github.com/bosioF/CeditX" target="_blank" class="project-link">
-              Explore Repository →
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container">
-      <h2 class="reveal">Get In Touch</h2>
-      <p class="section-subtitle reveal">Open for collaborations, CTF teams, and security discussions</p>
-
-      <div class="contact-grid">
-        <a href="https://github.com/bosioF" target="_blank" class="contact-card reveal">
-          <div class="contact-icon">
-            <img src="assets/icons/github-2d2d2d.svg" alt="GitHub" width="40" height="40">
-          </div>
-          <div class="contact-name">GitHub</div>
-        </a>
-
-        <a href="https://www.instagram.com/bosio.federico/" target="_blank" class="contact-card reveal">
-          <div class="contact-icon">
-            <img src="assets/icons/instagram-2d2d2d.svg" alt="Instagram" width="40" height="40">
-          </div>
-          <div class="contact-name">Instagram</div>
-        </a>
-
-        <a href="https://discord.com/users/701786584768315403" target="_blank" class="contact-card reveal">
-          <div class="contact-icon">
-            <img src="assets/icons/discord-2d2d2d.svg" alt="Discord" width="40" height="40">
-          </div>
-          <div class="contact-name">Discord</div>
-        </a>
-
-        <a href="mailto:place@holder.com" class="contact-card reveal">
-          <div class="contact-icon">
-            <img src="assets/icons/envelope-2d2d2d.svg" alt="Email" width="40" height="40">
-          </div>
-          <div class="contact-name">Email</div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2026 Federico Bosio</p>
-  </footer>
-  <script src="js/main.js"></script>
-</body>
+        </section>
+        <section id="tools">
+            <div class="container">
+                <p class="section-subtitle-tools reveal">Some tools that I use</p>
+                <div class="skills-grid">
+                    <div class="skill-card reveal">
+                        <div class="skill-name">Git</div>
+                    </div>
+                    <div class="skill-card reveal">
+                        <div class="skill-name">Docker</div>
+                    </div>
+                    <div class="skill-card reveal">
+                        <div class="skill-name">Burp Suite</div>
+                    </div>
+                    <div class="skill-card reveal">
+                        <div class="skill-name">GDB + GEF</div>
+                    </div>
+                    <div class="skill-card reveal">
+                        <div class="skill-name">Ghidra</div>
+                    </div>
+                    <div class="skill-card reveal">
+                        <div class="skill-name">IDA</div>
+                    </div>
+                    <div class="skill-card reveal">
+                        <div class="skill-name">Wireshark</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="projects">
+            <div class="container">
+                <h2 class="reveal">Featured Projects</h2>
+                <p class="section-subtitle reveal">
+                    Building tools and solving challenges
+                </p>
+                <div class="projects-grid">
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <h3 class="project-title">
+                                DockerChat
+                                <span class="badge">Released</span>
+                            </h3>
+                            <p class="project-desc">
+                                Docker-based end-to-end encrypted chat application simulating a
+                secure network environment.
+                            </p>
+                        </div>
+                        <div class="project-body">
+                            <div class="tech-tags">
+                                <span class="tech-tag">Docker</span>
+                                <span class="tech-tag">Bun</span>
+                                <span class="tech-tag">Preact</span>
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">Encryption</span>
+                                <span class="tech-tag">Redis</span>
+                                <span class="tech-tag">Flask</span>
+                            </div>
+                            <a href="https://github.com/Nick-Maro/DockerChat" target="_blank" class="project-link">
+                                Explore Repository →
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <h3 class="project-title">
+                                Olicyber Write-ups
+                                <span class="badge">Active</span>
+                            </h3>
+                            <p class="project-desc">
+                                Complete collection of detailed CTF write-ups for Olicyber
+                challenges with frequent updates.
+                            </p>
+                        </div>
+                        <div class="project-body">
+                            <div class="tech-tags">
+                                <span class="tech-tag">CTF</span>
+                                <span class="tech-tag">Write-ups</span>
+                                <span class="tech-tag">Cybersecurity</span>
+                            </div>
+                            <a href="https://github.com/bosioF/OlicyberWriteUps" target="_blank" class="project-link">
+                                Explore Repository →
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <h3 class="project-title">
+                                CeditX
+                                <span class="badge wip">Discontinued</span>
+                            </h3>
+                            <p class="project-desc">
+                                Lightweight hex editor in C for binary file analysis. Features
+                direct byte editing, hex pattern search, and safe memory
+                management. Isn't receiving anymore updates at the moment.
+                            </p>
+                        </div>
+                        <div class="project-body">
+                            <div class="tech-tags">
+                                <span class="tech-tag">C</span>
+                                <span class="tech-tag">Hex Editor</span>
+                                <span class="tech-tag">Binary Analysis</span>
+                            </div>
+                            <a href="https://github.com/bosioF/CeditX" target="_blank" class="project-link">
+                                Explore Repository →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="contact">
+            <div class="container">
+                <h2 class="reveal">Get In Touch</h2>
+                <p class="section-subtitle reveal">
+                    Open for collaborations, CTF teams, and security discussions
+                </p>
+                <div class="contact-grid">
+                    <a href="https://github.com/bosioF" target="_blank" class="contact-card reveal">
+                        <div class="contact-icon">
+                            <img
+                                src="src/assets/icons/github-2d2d2d.svg"
+                                alt="GitHub"
+                                width="40"
+                                height="40"
+                            >
+                        </div>
+                        <div class="contact-name">GitHub</div>
+                    </a>
+                    <a href="https://www.instagram.com/bosio.federico/" target="_blank" class="contact-card reveal">
+                        <div class="contact-icon">
+                            <img
+                                src="src/assets/icons/instagram-2d2d2d.svg"
+                                alt="Instagram"
+                                width="40"
+                                height="40"
+                            >
+                        </div>
+                        <div class="contact-name">Instagram</div>
+                    </a>
+                    <a href="https://discord.com/users/701786584768315403" target="_blank" class="contact-card reveal">
+                        <div class="contact-icon">
+                            <img
+                                src="src/assets/icons/discord-2d2d2d.svg"
+                                alt="Discord"
+                                width="40"
+                                height="40"
+                            >
+                        </div>
+                        <div class="contact-name">Discord</div>
+                    </a>
+                    <a href="mailto:place@holder.com" class="contact-card reveal">
+                        <div class="contact-icon">
+                            <img
+                                src="src/assets/icons/envelope-2d2d2d.svg"
+                                alt="Email"
+                                width="40"
+                                height="40"
+                            >
+                        </div>
+                        <div class="contact-name">Email</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <p>&copy; 2026 Federico Bosio</p>
+        </footer>
+        <script src="src/js/main.js"></script>
+    </body>
 </html>

@@ -12,14 +12,14 @@ const drops = Array(Math.floor(columns)).fill(1);
 function drawMatrix() {
   ctx.fillStyle = 'rgba(10, 14, 39, 0.05)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
+
   ctx.fillStyle = '#00f0ff';
   ctx.font = fontSize + 'px monospace';
-  
+
   for (let i = 0; i < drops.length; i++) {
     const text = chars[Math.floor(Math.random() * chars.length)];
     ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-    
+
     if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
       drops[i] = 0;
     }
@@ -58,7 +58,7 @@ const revealOnScroll = () => {
   revealElements.forEach(el => {
     const elementTop = el.getBoundingClientRect().top;
     const windowHeight = window.innerHeight;
-    
+
     if (elementTop < windowHeight - 100) {
       el.classList.add('active');
     }
@@ -77,21 +77,21 @@ const commands = {
   'ls': 'flag.txt',
   'pwd': '/home/portfolio',
   'help': 'Available commands: cat, ls, pwd, whoami, clear, help',
-  'whoami': 'fedebosio@RootRunners',
+  'whoami': 'b0510@RootRunners',
   'clear': 'CLEAR_TERMINAL'
 };
 
 terminalInput.addEventListener('keydown', function(e) {
   if (e.key === 'Enter') {
     const input = this.value.trim();
-    
+
     if (input) {
       const cmdLine = document.createElement('div');
       cmdLine.className = 'terminal-line';
       cmdLine.innerHTML = `<span class="prompt">└─$</span> <span class="command">${input}</span>`;
-      
+
       terminalBody.insertBefore(cmdLine, inputLine);
-      
+
       if (commands[input]) {
         if (commands[input] === 'CLEAR_TERMINAL') {
           const lines = terminalBody.querySelectorAll('.terminal-line:not(#inputLine)');
@@ -99,13 +99,13 @@ terminalInput.addEventListener('keydown', function(e) {
         } else {
           const outputLine = document.createElement('div');
           outputLine.className = 'terminal-line';
-          
+
           if (input === 'cat flag.txt') {
             outputLine.innerHTML = `<span class="output" style="color: var(--accent-green); font-weight: 700;">${commands[input]}</span>`;
           } else {
             outputLine.innerHTML = `<span class="output">${commands[input]}</span>`;
           }
-          
+
           terminalBody.insertBefore(outputLine, inputLine);
         }
       } else {
@@ -114,9 +114,9 @@ terminalInput.addEventListener('keydown', function(e) {
         errorLine.innerHTML = `<span class="output" style="color: var(--accent-purple);">bash: ${input}: command not found</span>`;
         terminalBody.insertBefore(errorLine, inputLine);
       }
-      
+
       this.value = '';
-      
+
       terminalBody.scrollTop = terminalBody.scrollHeight;
     }
   }
@@ -144,13 +144,13 @@ function topFunc() {
 }
 
 function fadeText(element, newText) {
-  if (element.textContent === newText) return; 
+  if (element.textContent === newText) return;
 
-  element.style.opacity = "0";  
+  element.style.opacity = "0";
 
   setTimeout(() => {
     element.textContent = newText;
-    element.style.opacity = "1"; 
-  }, 200); 
+    element.style.opacity = "1";
+  }, 200);
 }
 
