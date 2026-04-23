@@ -1,67 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>articoli - b0510</title>
-        <link rel="icon" type="image/x-icon" href="../../public/favicon.ico">
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="../../public/favicon-32x32.png"
-        >
-        <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="../../public/favicon-16x16.png"
-        >
-        <link rel="apple-touch-icon" sizes="180x180" href="../../public/apple-touch-icon.png">
-        <link rel="manifest" href="../../public/site.webmanifest">
-        <link rel="stylesheet" href="../css/main.css">
-    </head>
-    <body>
-        <div class="language-switch">
-            <a href="../en/index.html" class="lang-btn">EN</a>
-            <span class="lang-separator">/</span>
-            <a href="../it/index.html" class="lang-btn active">IT</a>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>articoli — b0510</title>
+    <meta name="description" content="CTF write-ups, security research and technical articles by b0510">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Berkeley+Mono&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/artcles.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="../../index.html" class="site-title">b0510</a>
+            <nav>
+                <a href="index.html#about">about</a>
+                <a href="index.html#projects">projects</a>
+                <a href="index.html#contact">contact</a>
+                <span class="lang-switcher">
+                    <a href="../en/index.html">en</a>
+                    <span>/</span>
+                    <a href="index.html" class="active">it</a>
+                </span>
+            </nav>
         </div>
-        <canvas id="matrix"></canvas>
-        <div class="terminal-bg"></div>
-        <div class="articles-container">
-            <div class="articles-header">
-                <h1>Articoli e Writeup</h1>
-                <p>Articoli tecnici, writeup e ricerche</p>
+    </header>
+
+    <div class="site-wrap">
+        <main>
+
+            <div class="page-header">
+                <h1>articoli &amp; write-ups</h1>
+                <p>Write-ups e ricerche.</p>
             </div>
-            <div class="articles-header"><h3>Ancora nulla per ora</h3></div>
-            <div class="articles-grid">
-                <!--
-                <div class="article-card">
-                    <div class="article-header">
-                        <div class="article-meta">
-                            <span class="article-date">Gen 15, 2026</span>
-                        </div>
-                        <h2>
-                            <a href="#">L'impatto dell'IA</a>
-                        </h2>
-                    </div>
-                    <div class="article-body">
-                        <div class="article-tags">
-                            <span class="article-tag">AI</span>
-                            <span class="article-tag">Notizie</span>
-                        </div>
-                        <p class="article-description">
-                            Un articolo che descrive i lati dell'IA di cui non si parla
-                        </p>
-                        <a href="articoli/AI_150126.html" class="read-more">Leggi di più →</a>
-                    </div>
-                </div>
-                -->
-                <div class="back-home">
-                    <a href="../../index.html" class="btn">← Torna indietro</a>
-                </div>
+
+            <p class="section-title">write-ups</p>
+
+            <!-- when articles exist, replace .empty-state with .article-list items -->
+            <div class="empty-state">
+                <p>// ancora nulla</p>
+                <p class="note">Write-ups ed articoli appariranno qui. Controlla presto.</p>
             </div>
-            <script src="../js/main.js"></script>
-        </body>
-    </html>
+
+            <!--
+      TEMPLATE
+
+      <div class="article-list">
+        <div class="article-item">
+          <span class="article-date">Jan 15 2026</span>
+          <div class="article-content">
+            <a class="article-title" href="articles/example.html">Article Title Here</a>
+            <p class="article-desc">Short description of the article or write-up content.</p>
+            <div class="article-tags">
+              <span class="tag">CTF</span>
+              <span class="tag">pwn</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      -->
+
+            <div class="back-link">
+                <a href="../../index.html">← Torna Indietro</a>
+            </div>
+
+        </main>
+    </div>
+
+    <footer>
+        <div class="inner">
+            <p>&copy; 2026 Federico Bosio</p>
+            <a href="https://github.com/bosioF" target="_blank">github.com/bosioF</a>
+        </div>
+    </footer>
+
+</body>
+
+</html>
