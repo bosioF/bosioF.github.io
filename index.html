@@ -1,209 +1,269 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>b0510</title>
+        <meta
+            name="description"
+            content="b0510 — CTF player & cybersecurity enthusiast"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Berkeley+Mono&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="src/css/main.css" />
+    </head>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>b0510</title>
-    <meta name="description" content="b0510 — CTF player & cybersecurity enthusiast">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Berkeley+Mono&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="src/css/main.css">
-</head>
-
-<body>
-
-    <header>
-        <div class="header-inner">
-            <a href="index.html" class="site-title">b0510</a>
-            <nav>
-                <a href="#about">about</a>
-                <a href="#skills">skills</a>
-                <a href="#projects">projects</a>
-                <a href="src/en/index.html">articles</a>
-                <a href="#contact">contact</a>
-            </nav>
-        </div>
-    </header>
-
-    <div class="site-wrap">
-        <main>
-
-            <div class="intro">
-                <h1>b0510</h1>
-                <p>
-                    CTF player and cybersecurity enthusiast.
-                    Member of <a href="https://rootrunners.dev/" target="_blank">RootRunners</a>.
-                </p>
-                <p>
-                    I break things to understand how they work.
-                    Focused on low-level exploitation and reverse engineering.
-                </p>
+    <body>
+        <header>
+            <div class="header-inner">
+                <a href="index.html" class="site-title">b0510</a>
+                <nav>
+                    <a href="#about">about</a>
+                    <a href="#skills">skills</a>
+                    <a href="#projects">projects</a>
+                    <a href="src/en/index.html">articles</a>
+                    <a href="#contact">contact</a>
+                </nav>
             </div>
+        </header>
 
+        <div class="site-wrap">
+            <main>
+                <div class="intro">
+                    <h1>b0510</h1>
+                    <p>
+                        CTF player and cybersecurity enthusiast. Member of
+                        <a href="https://rootrunners.dev/" target="_blank"
+                            >RootRunners</a
+                        >.
+                    </p>
+                    <p>
+                        I break things to understand how they work. Focused on
+                        low-level exploitation and reverse engineering.
+                    </p>
+                </div>
 
-            <div class="terminal-block" id="termBlock">
-                <pre id="termOutput"><span class="term-prompt">$</span> <span class="term-cmd">whoami</span>
+                <div class="terminal-block" id="termBlock">
+                    <pre
+                        id="termOutput"
+                    ><span class="term-prompt">$</span> <span class="term-cmd">whoami</span>
 <span class="term-out">b0510@RootRunners</span>
 
 <span class="term-prompt">$</span> <span class="term-cmd">cat interests.txt</span>
 <span class="term-out">low-level / software security / ctf competitions</span>
 </pre>
-                <div id="term-input-line"><span class="term-prompt"
-                        style="margin-right:0.4rem;font-family:var(--mono);font-size:0.8rem;">$</span><input type="text"
-                        id="termInput" autocomplete="off" spellcheck="false" placeholder="type a command..."></div>
-            </div>
-
-
-            <section id="about">
-                <p class="section-title">about</p>
-                <div class="about-grid">
-                    <div class="about-item">
-                        <span class="about-label">mission</span>
-                        <span class="about-value">Working towards TeamItaly. Practicing through HTB, pwn.college and
-                            CTFs.</span>
-                    </div>
-                    <div class="about-item">
-                        <span class="about-label">focus</span>
-                        <span class="about-value">Software security with a strong interest in reverse engineering and
-                            binary exploitation.</span>
-                    </div>
-                    <div class="about-item">
-                        <span class="about-label">learning</span>
-                        <span class="about-value">Constantly absorbing new attack techniques and defense mechanisms.
-                            Currently studying for HTB CPTS.</span>
-                    </div>
-                    <div class="about-item">
-                        <span class="about-label">since</span>
-                        <span class="about-value">Breaking things since 2024.</span>
+                    <div id="term-input-line">
+                        <span
+                            class="term-prompt"
+                            style="
+                                margin-right: 0.4rem;
+                                font-family: var(--mono);
+                                font-size: 0.8rem;
+                            "
+                            >$</span
+                        ><input
+                            type="text"
+                            id="termInput"
+                            autocomplete="off"
+                            spellcheck="false"
+                            placeholder="type a command..."
+                        />
                     </div>
                 </div>
-            </section>
 
-
-            <section id="skills">
-                <p class="section-title">languages</p>
-                <div class="tag-list" style="margin-bottom: 2rem;">
-                    <span class="tag">Python</span>
-                    <span class="tag">C</span>
-                    <span class="tag">Assembly x86</span>
-                    <span class="tag">JavaScript</span>
-                    <span class="tag">Bash</span>
-                    <span class="tag">HTML / CSS</span>
-                </div>
-
-                <p class="section-title">tools</p>
-                <div class="tag-list">
-                    <span class="tag">Git</span>
-                    <span class="tag">Docker</span>
-                    <span class="tag">Burp Suite</span>
-                    <span class="tag">pwndbg</span>
-                    <span class="tag">Ghidra</span>
-                    <span class="tag">IDA</span>
-                    <span class="tag">Wireshark</span>
-                </div>
-            </section>
-
-
-            <section id="projects">
-                <p class="section-title">projects</p>
-                <div class="project-list">
-
-                    <div class="project-item">
-                        <div>
-                            <a class="project-name" href="https://github.com/jiramo/jiramo" target="_blank">Jiramo</a>
-                            <p class="project-desc">The #1 CRM built for developers.</p>
-                            <div class="project-stack">
-                                <span class="tag">Go</span>
-                                <span class="tag">TypeScript</span>
-                                <span class="tag">Docker</span>
-                            </div>
+                <section id="about">
+                    <p class="section-title">about</p>
+                    <div class="about-grid">
+                        <div class="about-item">
+                            <span class="about-label">mission</span>
+                            <span class="about-value"
+                                >Working towards TeamItaly. Practicing through
+                                HTB, pwn.college and CTFs.</span
+                            >
                         </div>
-                        <span class="status-badge wip">WIP</span>
-                    </div>
-
-                    <div class="project-item">
-                        <div>
-                            <a class="project-name" href="https://github.com/Nick-Maro/DockerChat"
-                                target="_blank">DockerChat</a>
-                            <p class="project-desc">Docker-based end-to-end encrypted chat application simulating a
-                                secure network environment.</p>
-                            <div class="project-stack">
-                                <span class="tag">Docker</span>
-                                <span class="tag">Bun</span>
-                                <span class="tag">Preact</span>
-                                <span class="tag">TypeScript</span>
-                                <span class="tag">Redis</span>
-                                <span class="tag">Flask</span>
-                            </div>
+                        <div class="about-item">
+                            <span class="about-label">focus</span>
+                            <span class="about-value"
+                                >Software security with a strong interest in
+                                reverse engineering and binary
+                                exploitation.</span
+                            >
                         </div>
-                        <span class="status-badge active">released</span>
-                    </div>
-
-                    <div class="project-item">
-                        <div>
-                            <a class="project-name" href="https://github.com/bosioF/OlicyberWriteUps"
-                                target="_blank">Olicyber Write-ups</a>
-                            <p class="project-desc">Complete collection of detailed CTF write-ups for Olicyber
-                                challenges, with frequent updates.</p>
-                            <div class="project-stack">
-                                <span class="tag">CTF</span>
-                                <span class="tag">Write-ups</span>
-                            </div>
+                        <div class="about-item">
+                            <span class="about-label">learning</span>
+                            <span class="about-value"
+                                >Constantly absorbing new attack techniques and
+                                defense mechanisms. Currently studying for HTB
+                                CPTS.</span
+                            >
                         </div>
-                        <span class="status-badge active">active</span>
-                    </div>
-
-                    <div class="project-item">
-                        <div>
-                            <a class="project-name" href="https://github.com/bosioF/CeditX" target="_blank">CeditX</a>
-                            <p class="project-desc">Lightweight hex editor in C for binary file analysis. Direct byte
-                                editing, hex pattern search, safe memory management.</p>
-                            <div class="project-stack">
-                                <span class="tag">C</span>
-                                <span class="tag">Hex Editor</span>
-                                <span class="tag">Binary Analysis</span>
-                            </div>
+                        <div class="about-item">
+                            <span class="about-label">since</span>
+                            <span class="about-value"
+                                >Breaking things since 2024.</span
+                            >
                         </div>
-                        <span class="status-badge discontinued">discontinued</span>
+                    </div>
+                </section>
+
+                <section id="skills">
+                    <p class="section-title">languages</p>
+                    <div class="tag-list" style="margin-bottom: 2rem">
+                        <span class="tag">Python</span>
+                        <span class="tag">C</span>
+                        <span class="tag">Assembly x86</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Bash</span>
+                        <span class="tag">HTML / CSS</span>
                     </div>
 
-                </div>
-            </section>
-
-
-            <section id="contact">
-                <p class="section-title">contact</p>
-                <div class="contact-list">
-                    <div class="contact-item">
-                        <span class="contact-platform">github</span>
-                        <a href="https://github.com/bosioF" target="_blank">bosioF</a>
+                    <p class="section-title">tools</p>
+                    <div class="tag-list">
+                        <span class="tag">Git</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">Burp Suite</span>
+                        <span class="tag">pwndbg</span>
+                        <span class="tag">Ghidra</span>
+                        <span class="tag">IDA</span>
+                        <span class="tag">Wireshark</span>
                     </div>
-                    <div class="contact-item">
-                        <span class="contact-platform">linkedin</span>
-                        <a href="https://www.linkedin.com/in/federico-bosio-41a046352/"
-                            target="_blank">federico-bosio</a>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-platform">telegram</span>
-                        <a href="https://t.me/bosi0f" target="_blank">@bosi0f</a>
-                    </div>
-                </div>
-            </section>
+                </section>
 
-        </main>
-    </div>
+                <section id="projects">
+                    <p class="section-title">projects</p>
+                    <div class="project-list">
+                        <div class="project-item">
+                            <div>
+                                <a
+                                    class="project-name"
+                                    href="https://github.com/jiramo/jiramo"
+                                    target="_blank"
+                                    >Jiramo</a
+                                >
+                                <p class="project-desc">
+                                    The #1 CRM built for developers.
+                                </p>
+                                <div class="project-stack">
+                                    <span class="tag">Go</span>
+                                    <span class="tag">TypeScript</span>
+                                    <span class="tag">Docker</span>
+                                </div>
+                            </div>
+                            <span class="status-badge paused">paused</span>
+                        </div>
 
-    <footer>
-        <div class="inner">
-            <p>&copy; 2026 Federico Bosio</p>
-            <a href="https://github.com/bosioF" target="_blank">github.com/bosioF</a>
+                        <div class="project-item">
+                            <div>
+                                <a
+                                    class="project-name"
+                                    href="https://github.com/Nick-Maro/DockerChat"
+                                    target="_blank"
+                                    >DockerChat</a
+                                >
+                                <p class="project-desc">
+                                    Docker-based end-to-end encrypted chat
+                                    application simulating a secure network
+                                    environment.
+                                </p>
+                                <div class="project-stack">
+                                    <span class="tag">Docker</span>
+                                    <span class="tag">Bun</span>
+                                    <span class="tag">Preact</span>
+                                    <span class="tag">TypeScript</span>
+                                    <span class="tag">Redis</span>
+                                    <span class="tag">Flask</span>
+                                </div>
+                            </div>
+                            <span class="status-badge active">released</span>
+                        </div>
+
+                        <div class="project-item">
+                            <div>
+                                <a
+                                    class="project-name"
+                                    href="https://github.com/bosioF/OlicyberWriteUps"
+                                    target="_blank"
+                                    >Olicyber Write-ups</a
+                                >
+                                <p class="project-desc">
+                                    Complete collection of detailed CTF
+                                    write-ups for Olicyber challenges, with
+                                    frequent updates.
+                                </p>
+                                <div class="project-stack">
+                                    <span class="tag">CTF</span>
+                                    <span class="tag">Write-ups</span>
+                                </div>
+                            </div>
+                            <span class="status-badge active">active</span>
+                        </div>
+
+                        <div class="project-item">
+                            <div>
+                                <a
+                                    class="project-name"
+                                    href="https://github.com/bosioF/CeditX"
+                                    target="_blank"
+                                    >CeditX</a
+                                >
+                                <p class="project-desc">
+                                    Lightweight hex editor in C for binary file
+                                    analysis. Direct byte editing, hex pattern
+                                    search, safe memory management.
+                                </p>
+                                <div class="project-stack">
+                                    <span class="tag">C</span>
+                                    <span class="tag">Hex Editor</span>
+                                    <span class="tag">Binary Analysis</span>
+                                </div>
+                            </div>
+                            <span class="status-badge discontinued"
+                                >discontinued</span
+                            >
+                        </div>
+                    </div>
+                </section>
+
+                <section id="contact">
+                    <p class="section-title">contact</p>
+                    <div class="contact-list">
+                        <div class="contact-item">
+                            <span class="contact-platform">github</span>
+                            <a href="https://github.com/bosioF" target="_blank"
+                                >bosioF</a
+                            >
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-platform">linkedin</span>
+                            <a
+                                href="https://www.linkedin.com/in/federico-bosio-41a046352/"
+                                target="_blank"
+                                >federico-bosio</a
+                            >
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-platform">telegram</span>
+                            <a href="https://t.me/bosi0f" target="_blank"
+                                >@bosi0f</a
+                            >
+                        </div>
+                    </div>
+                </section>
+            </main>
         </div>
-    </footer>
-    <script src="src/js/main.js"></script>
-</body>
 
+        <footer>
+            <div class="inner">
+                <p>&copy; 2026 Federico Bosio</p>
+                <a href="https://github.com/bosioF" target="_blank"
+                    >github.com/bosioF</a
+                >
+            </div>
+        </footer>
+        <script src="src/js/main.js"></script>
+    </body>
 </html>
