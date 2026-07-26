@@ -7,29 +7,21 @@
 }
 
 :root {
-    --fg: #111;
-    --fg-muted: #555;
-    --fg-faint: #999;
-    --bg: #f7f5f0;
-    --bg-alt: #edeae2;
-    --link: #2d6a4f;
-    --link-hover: #1b4332;
+    --fg: #f4f4f4;
+    --fg-muted: #b8b8b8;
+    --fg-faint: #7a7a80;
+    --bg: #0f0f10;
+    --bg-alt: #18181b;
+    --bg-hover: #222226;
+    --primary: #6b0e1e;
+    --primary-hover: #861328;
+    --accent: #f5de8d;
+    --accent-hover: #fbe9ae;
+    --link: var(--accent);
+    --link-hover: var(--accent-hover);
     --mono: 'Berkeley Mono', 'Fira Code', 'Courier New', monospace;
     --serif: 'Newsreader', Georgia, serif;
-    --line: 1px solid #d4d0c8;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --fg: #e8e4db;
-        --fg-muted: #a09890;
-        --fg-faint: #6b6460;
-        --bg: #141210;
-        --bg-alt: #1e1b18;
-        --link: #74c69d;
-        --link-hover: #95d5b2;
-        --line: 1px solid #2a2520;
-    }
+    --line: 1px solid #2b2b2f;
 }
 
 html {
@@ -38,7 +30,12 @@ html {
 
 body {
     font-family: var(--serif);
-    background: var(--bg);
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        var(--bg);
+    background-size: 42px 42px, 42px 42px, 100% 100%;
+    background-attachment: fixed;
     color: var(--fg);
     line-height: 1.75;
     min-height: 100vh;
@@ -173,16 +170,28 @@ main {
 }
 
 .article-item {
-    padding: 1.25rem 0;
+    padding: 1.25rem 1rem;
+    margin: 0 -1rem;
     border-bottom: var(--line);
+    border-radius: 5px;
     display: grid;
     grid-template-columns: 90px 1fr;
     gap: 1.25rem;
     align-items: start;
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .article-item:first-child {
     border-top: var(--line);
+}
+
+.article-item:hover {
+    background: var(--bg-alt);
+    border-color: var(--primary-hover);
+    transform: translateY(-2px);
 }
 
 .article-date {
