@@ -1,14 +1,26 @@
 const termInput = document.getElementById('termInput');
 const termOutput = document.getElementById('termOutput');
 
+const randomHexString = length => {
+    let result = [];
+    let hexRef = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
+    for (let n = 0; n < length; n++) {
+        result.push(hexRef[Math.floor(Math.random() * hexRef.length)]);
+    }
+    return result.join('');
+};
+
+hex = randomHexString(12)
+
 const commands = {
   whoami: 'b0510@RootRunners',
   ls: 'flag.txt  interests.txt  projects/  writeups/',
   pwd: '/home/b0510',
   help: 'commands: whoami  ls  pwd  cat  clear  help',
-  'cat flag.txt': 'b0510{n1c3!!_n0w_3sc4l3t3_pr1v1l3g35}',
+  'cat flag.txt': `b0510{g0Od_j0B_g3Ett1Ng_tH15_oN3_N0w_F1nD_Th3_0tHer_0n3_` + hex + '}',
   'cat interests.txt': 'low-level / software security / ctf competitions',
   'uname -a': 'Linux b0510 6.6.0-ctf #1 SMP x86_64 GNU/Linux',
+  'env': '1: 59628838',
   clear: '__CLEAR__'
 };
 
