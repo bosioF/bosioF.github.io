@@ -1,1 +1,1 @@
-my portfolio, feel free to take a look (and find flags) :)
+just my portfolio, feel free to take a look (and find flags) :)
