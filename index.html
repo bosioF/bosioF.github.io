@@ -2,6 +2,21 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
+        <script>
+            (function () {
+                try {
+                    var t = localStorage.getItem("theme");
+                    if (t !== "light" && t !== "dark") {
+                        t = window.matchMedia(
+                            "(prefers-color-scheme: dark)",
+                        ).matches
+                            ? "dark"
+                            : "light";
+                    }
+                    document.documentElement.setAttribute("data-theme", t);
+                } catch (e) {}
+            })();
+        </script>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>b0510</title>
         <meta
@@ -27,6 +42,27 @@
                     <a href="#projects">projects</a>
                     <a href="src/en/index.html">articles</a>
                     <a href="#contact">contact</a>
+                    <label class="theme-toggle" title="Toggle theme">
+                        <input
+                            type="checkbox"
+                            id="themeToggle"
+                            aria-label="Toggle dark mode"
+                        />
+                        <span class="track">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="4" />
+                                <path
+                                    d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+                                />
+                            </svg>
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"
+                                />
+                            </svg>
+                        </span>
+                        <span class="thumb"></span>
+                    </label>
                 </nav>
             </div>
         </header>
@@ -315,5 +351,6 @@
             </div>
         </footer>
         <script src="src/js/main.js"></script>
+        <script src="src/js/theme.js"></script>
     </body>
 </html>
