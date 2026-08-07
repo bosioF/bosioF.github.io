@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <script>
+            (function () {
+                try {
+                    var t = localStorage.getItem("theme");
+                    if (t !== "light" && t !== "dark") {
+                        t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+                    }
+                    document.documentElement.setAttribute("data-theme", t);
+                } catch (e) {}
+            })();
+        </script>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>BabyRF — b0510</title>
+        <meta name="description" content="BabyRF CTF Writeup" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Berkeley+Mono&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="../../css/main.css" />
+    </head>
+    <body>
+        <header>
+            <div class="header-inner">
+                <a href="index.html" class="site-title">b0510</a>
+                <nav>
+                    <a href="../../../index.html#about">about</a>
+                    <a href="../../../index.html#projects">projects</a>
+                    <a href="../../../index.html#contact">contact</a>
+                    <label class="theme-toggle" title="Toggle theme">
+                        <input type="checkbox" id="themeToggle" aria-label="Toggle dark mode" />
+                        <span class="track">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" /></svg>
+                            <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" /></svg>
+                        </span>
+                        <span class="thumb"></span>
+                    </label>
+                </nav>
+            </div>
+        </header>
+
+        <div class="site-wrap">
+            <main>
+                <article class="writeup">
+                    <div class="intro"><h1 style="font-size: 2.5rem">BabyRF</h1></div>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">&gt; <strong>CTF:</strong> L3akCTF 2026</p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">&gt; <strong>Category:</strong> Hardware / Rf</p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">&gt; <strong>Difficulty:</strong> Easy</p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">&gt; <strong>Solves:</strong> 63</p>
+<p class="section-title" style="margin-top: 2rem;">Description</p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">I made a nice flag for our beginner challenge but I accidentally dropped it and it broke into pieces. I collected them all into this cozy little .wav file for you to find!</p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);"></p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">The flag consists of six case-sensitive parts. The fourth part is all uppercase.</p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);"><strong>Files provided:</strong> <code class="tag" style="font-size: 0.85em;">BabyRF.wav</code></p>
+<p class="section-title" style="margin-top: 2rem;">Approach</p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">The challenge involves analyzing an audio signal containing flag fragments hidden across different layers.</p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">The flag was assembled sequentially by solving six distinct parts:</p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">1. <strong>Audible Analysis (Parts 1 &amp; 2):</strong> Listening to the audio reveals an inverted voice track and shuffled characters. Reversing the file in Audacity yields <code class="tag" style="font-size: 0.85em;">L3AK{4uD10_S1gNaL_</code>.</p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">2. <strong>Spectrogram View (Part 3 &amp; 4):</strong> Opening the file in Audacity&#x27;s Spectrogram multi-view exposes visual text <code class="tag" style="font-size: 0.85em;">Pr0C3sS1Ng_</code> along with visual Morse code. Decoding the Morse code gives <code class="tag" style="font-size: 0.85em;">R3QU1RES_</code> (the 4th part, matching the hint of being all uppercase).</p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">3. <strong>Sample Rate Adjustments (Part 5):</strong> A strange string of numbers <code class="tag" style="font-size: 0.85em;">3051642</code> appears visually in the spectrogram. Lowering the sample rate reveals the real numbers <code class="tag" style="font-size: 0.85em;">31337_</code> (definition of guessing).</p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">4. <strong>Signal Amplification &amp; Time-Stretching (Part 6):</strong> An apparently silent section at the end contains a heavily attenuated high-frequency waveform. Amplifying the region and slowing down playback speed makes the final piece audible: <code class="tag" style="font-size: 0.85em;">5K1LLs}</code>.</p>
+<p class="section-title" style="margin-top: 2rem;">Technical Analysis</p>
+<h3 style="font-family: var(--mono); font-size: 1rem; margin: 1.5rem 0 0.5rem 0;">Signal &amp; Audio Forensics</h3>
+<li style="margin-left: 1.2rem;"><strong>Spectrogram Analysis:</strong> Visual inspection using Audacity Spectrogram mode to identify low-frequency visual cues and hidden Morse code channels.</li>
+<li style="margin-left: 1.2rem;"><strong>DSP / Audio Manipulation:</strong> Reversing audio tracks, sample-rate pitching, amplitude gain adjustment, and time-stretching.</li>
+<li style="margin-left: 1.2rem;"><strong>Tooling Used:</strong> Audacity, CyberChef.</li>
+<h3 style="font-family: var(--mono); font-size: 1rem; margin: 1.5rem 0 0.5rem 0;">Execution Steps &amp; Spectrogram Findings</h3>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">1. <strong>Reversing &amp; Spectrogram Inspection</strong>  </p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">   Opened <code class="tag" style="font-size: 0.85em;">BabyRF.wav</code> in Audacity and switched the track view to <strong>Spectrogram</strong>. This immediately rendered hidden text and Morse code embedded in the frequency plot:</p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">   <img src="img/babyrf/babyrf_1.png" target="_blank" rel="noopener"></></p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">2. <strong>Decoding Morse Code &amp; Visual Text</strong>  </p>
+<li style="margin-left: 1.2rem;"><strong>Morse Code:</strong> <code class="tag" style="font-size: 0.85em;">.-. ...-- --.- ..- .---- .-. . ... ..--.-</code> decoded to <code class="tag" style="font-size: 0.85em;">R3QU1RES_</code>.</li>
+<li style="margin-left: 1.2rem;"><strong>Visual Text:</strong> <code class="tag" style="font-size: 0.85em;">Pr0C3sS1Ng_</code> was visible on the upper frequency axis.</li>
+<li style="margin-left: 1.2rem;"><strong>Current Flag Progress:</strong> <code class="tag" style="font-size: 0.85em;">L3AK{4uD10_S1gNaL_Pr0C3sS1Ng_R3QU1RES_</code></li>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">3. <strong>Sample Rate Pitch Adjustment</strong>  </p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">   The initial visual text <code class="tag" style="font-size: 0.85em;">3051642</code> was kinda strange. I tried lowering the project sample rate which rendered the characters <code class="tag" style="font-size: 0.85em;">31337_</code>:</p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">   <img src="img/babyrf/babyrf_2.png" target="_blank" rel="noopener"></p></p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">4. <strong>Amplifying Silent End Sequence</strong>  </p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">   Analyzing the tail end of the waveform revealed an anomaly with near-zero amplitude:</p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">   <img src="img/babyrf/babyrf_3.png" target="_blank" rel="noopener"></></p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">   Applying a <strong>+20dB Gain / Amplify</strong> effect brought out the hidden high-pitch audio stream:</p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">   <img src="img/babyrf/babyrf_4.png" target="_blank" rel="noopener"></></p>
+<p style="margin-bottom: 1rem; color: var(--fg-muted);">   Slowing down the playback speed by <strong>50%</strong> made the speech intelligible, giving the final piece: <code class="tag" style="font-size: 0.85em;">5K1LLs}</code>.</p>
+<p class="section-title" style="margin-top: 2rem;">Flag</p>
+<div class="terminal-block"><pre><code>L3AK{4uD10_S1gNaL_Pr0C3sS1Ng_R3QU1RES_31337_5K1LLs}</code></pre></div>
+                </article>
+
+
+                <a class="back-link" href="../index.html">← back to articles</a>
+            </main>
+        </div>
+
+        <footer>
+            <div class="inner">
+                <p>&copy; 2026 Federico Bosio</p>
+                <a href="https://github.com/bosioF" target="_blank">github.com/bosioF</a>
+            </div>
+        </footer>
+        <script src="../../js/theme.js"></script>
+    </body>
+</html>
